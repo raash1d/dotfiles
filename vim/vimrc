@@ -1,0 +1,160 @@
+"Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+
+" Make sure you use single quotes
+
+" Themes
+Plug 'dracula/vim'
+Plug 'rakr/vim-one'
+
+" On-demand loading
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+
+" NERD Commenter
+Plug 'scrooloose/nerdcommenter'
+
+" Vim Airline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" SuperTab for tab completion
+Plug 'ervandew/supertab'
+
+" Git wrapper for vim
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-git'
+
+" Git gutter
+Plug 'airblade/vim-gitgutter'
+
+" YouCompleteMe
+Plug 'Valloric/YouCompleteMe'
+
+" Vim Surround
+Plug 'tpope/vim-surround'
+
+" Initialize plugin system
+call plug#end()
+
+" Settings\:
+" Color scheme
+" colorscheme one
+"set background=dark " for the dark version
+" set background=light " for the light version
+
+" 1 is the blinky block cursor
+" 2 is the default (non-blinky) block cursor
+" 3 is blinky underscore
+" 4 fixed underscore
+" 5 pipe bar (blinking)
+" 6 fixed pipe bar
+" Change cursor to pipe (|) in insert mode
+"au InsertEnter * silent execute \"!echo -en \<esc>[5 q"
+"au InsertLeave * silent execute \"!echo -en \<esc>[1 q"
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
+
+"================================
+" Python file related settings
+"au BufNewFile,BufRead *.py
+    "\ set tabstop=4
+    "\ set softtabstop=4
+    "\ set shiftwidth=4
+    "\ set textwidth=80
+    "\ set expandtab
+    "\ set autoindent
+    "\ set fileformat=unix
+
+let python_highlight_all=1
+syntax on
+" au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+"================================
+
+" setting encoding to utf-8
+set encoding=utf-8
+
+" Easier traversing between split windows
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Airline plugin
+let g:airline_theme='dracula'
+
+" Font
+set guifont=Roboto\ Mono:h12
+
+" Ending column
+set colorcolumn=80
+
+" Add line numbers
+set number relativenumber
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
+" Keep more info in memory to speed things up:
+set hidden
+set history=100
+
+" Have some logic when indenting:
+" The following lines insert spaces for tabs
+filetype indent on
+set nowrap
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+set autoindent
+
+" Remove white spaces on save
+autocmd BufWritePre * :%s/\s+$//e
+
+" When running a search, get Vim to highlight found words:
+set hlsearch
+
+" Cancel a search with Escape (Esc)
+nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
+
+" Re-Open previously opened file
+nnoremap <leader><leader> :e#<cr>
+
+" Show matching parenthesis when selecting one
+set showmatch
+
+" Leader key by default is \
+
+" Reload vimrc after change
+map <leader>s :source ~/.vimrc<cr>
+
+" Use arrow keys to navigate
+" map <Right> <C-w>l
+" map <Left> <C-w>h
+" map <Down> <C-w>j
+" map <Up> <C-w>k
+
+" Command-T Settings:
+" Ignore following files from search
+set wildignore+=*.log,*.sql,*.cache
+
+" Re-index newly created file
+noremap <leader>r :CommandTFlush<cr>
+
+" NERDTree Settings\:
+let NERDTreeMapActivateNode='<right>'
+let NERDTreeShowHidden=1
+" Toggle display of tree
+nmap <leader>n :NERDTreeToggle<cr>
+" Locate focused file in the tree
+nmap <leader>j :NERDTreeFind<cr>
+
+" Git Gutter Settings\:
+" Always show git gutter
+let g:gitgutter_sign_column_always=1
+"set signcolumn=yes
