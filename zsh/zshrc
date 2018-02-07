@@ -100,14 +100,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 if [ -e $HOME/.zsh_aliases ]; then
-    source .zsh_aliases
-fi
-
-# pull new changes (if any) for dotfiles
-if [ -d $HOME/dotfiles ]; then
-    cd dotfiles;
-    git pull;
-    git submodule update --init --recursive
+    source ~/.zsh_aliases
 fi
 
 # Run tmux if exists (https://github.com/Parth/dotfiles/blob/master/zsh/zshrc_manager.sh)

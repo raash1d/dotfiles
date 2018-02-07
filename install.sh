@@ -59,13 +59,13 @@ if [[ $1 == '-u' ]]; then
 fi
 
 # Create backup folder
-if [ -d $HOME/dotfiles.backup ]; then
+if ! [ -d $HOME/dotfiles.backup ]; then
     mkdir $HOME/dotfiles.backup
 fi
 
 ############## git specific settings #############
 # Install git dependencies
-sudo apt install\
+sudo apt -y install\
     meld\
     git
 
@@ -76,10 +76,10 @@ create_file_link git git_aliases
 
 ############### vim specific steps ###############
 # Remove vim-tiny
-sudo apt remove vim-tiny
+sudo apt -y remove vim-tiny
 
 # Install vim dependencies
-sudo apt install\
+sudo apt -y install\
     gcc\
     g++\
     cmake\
@@ -110,18 +110,23 @@ $HOME/.vim/plugged/YouCompleteMe/install.sh --clang-completer
 
 ############### zsh specific steps ###############
 # Install zsh dependencies
-sudo apt install\
+sudo apt -y install\
     fonts-powerline\
+    python3-pip\
     curl
 
+sudo -H pip3 install thefuck
+
 # Backup zsh configurations
-backup_file .zshrc
 backup_folder .oh-my-zsh
 
 cd ~
 
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# Backup zsh configurations
+backup_file .zshrc
 
 create_file_link zsh zshrc
 create_file_link zsh zsh_aliases
@@ -133,7 +138,7 @@ cd ~
 
 ############## tmux specific steps ###############
 # Install tmux dependencies
-sudo apt install\
+sudo apt -y install\
     xclip
 
 # Backup tmux configurations
