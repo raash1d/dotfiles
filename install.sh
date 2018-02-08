@@ -4,7 +4,26 @@
 # Author: Raashid Ansari
 # Date: Feb 6, 2018
 
-# Helper functions
+# Help/Usage
+if [[ $1 == '-h' ]]; then
+    echo "usage: install.sh [-h] [-u]"
+    echo "-h show this help text"
+    echo "-u update settings by pulling from git repo"
+    exit 0
+fi
+
+# Update settings by downloading from git
+if [[ $1 == '-u' ]]; then
+    cd $HOME
+    if [ -d dotfiles ]; then
+        cd dotfiles
+        git pull
+        git submodule update --init --recursive
+    fi
+    exit 0
+fi
+
+################ Helper functions ################
 backup_file() {
     echo -n "backing up file $1 ..."
     if [ -f $HOME/$1 ]; then
@@ -37,114 +56,121 @@ create_folder_link() {
     fi
     echo " done."
 }
-
-# Help/Usage
-if [[ $1 == '-h' ]]; then
-    echo "Usage:"
-    echo "install.sh [OPTIONS]"
-    echo "-h show this help text"
-    echo "-u update settings by pulling from git repo"
-    exit 0
-fi
-
-# Update settings by downloading from git
-if [[ $1 == '-u' ]]; then
-    cd $HOME
-    if [ -d dotfiles ]; then
-        cd dotfiles
-        git pull
-        git submodule update --init --recursive
-    fi
-    exit 0
-fi
+##################################################
 
 # Create backup folder
-if ! [ -d $HOME/dotfiles.backup ]; then
-    mkdir $HOME/dotfiles.backup
-fi
+create_backup_folder() {
+    if ! [ -d $HOME/dotfiles.backup ]; then
+        mkdir $HOME/dotfiles.backup
+    fi
+}
 
 ############## git specific settings #############
-# Install git dependencies
-sudo apt -y install\
-    meld\
-    git
+git_steps() {
+    # Check/Install git dependencies
+    source lib/install meld
+    source lib/install git
 
-# Create git symlinks
-create_file_link git gitconfig
-create_file_link git git_aliases
+    # Create git symlinks
+    create_file_link git gitconfig
+    create_file_link git git_aliases
+}
 ##################################################
 
 ############### vim specific steps ###############
-# Remove vim-tiny
-sudo apt -y remove vim-tiny
+vim_steps() {
+    # Remove vim-tiny
+    source lib/remove vim-tiny
 
-# Install vim dependencies
-sudo apt -y install\
-    gcc\
-    g++\
-    cmake\
-    clang\
-    vim-ctrlp\
-    vim-syntastic\
-    vim-gnome\
-    vim-gtk3\
-    vim-gtk3-py2\
-    vim-autopep8\
-    python-dev\
-    python3-dev
+    # Install vim dependencies
+    source lib/install gcc
+    source lib/install g++
+    source lib/install cmake
+    source lib/install clang
+    source lib/install vim-ctrlp
+    source lib/install vim-syntastic
+    source lib/install vim-gnome
+    source lib/install vim-gtk3
+    source lib/install vim-gtk3-py2
+    source lib/install vim-autopep8
+    source lib/install python-dev
+    source lib/install python3-dev
 
-# Backup vim configurations
-backup_file .vimrc
-backup_folder .vim
+    # Backup vim configurations
+    backup_file .vimrc
+    backup_folder .vim
 
-# Create symlinks for vim
-create_file_link vim vimrc
-create_folder_link vim 
+    # Create symlinks for vim
+    create_file_link vim vimrc
+    create_folder_link vim 
 
-# Install vim plugins
-vim +:PlugClean +:PlugInstall
+    # Install vim plugins
+    vim +:PlugClean +:PlugInstall
 
-# Complete YouCompleteMe configuration
-$HOME/.vim/plugged/YouCompleteMe/install.sh --clang-completer
+    # Complete YouCompleteMe configuration
+    $HOME/.vim/plugged/YouCompleteMe/install.py --clang-completer
+}
 ##################################################
 
 ############### zsh specific steps ###############
-# Install zsh dependencies
-sudo apt -y install\
-    fonts-powerline\
-    python3-pip\
-    curl
+zsh_steps() {
+    # Install zsh dependencies
+    source lib/install zsh
+    source lib/install fonts-powerline
+    source lib/install $(source lib/get_software_name pip) 
+    source lib/install curl
+    
+    if [[ $(source lib/check_os) == "mac" ]]; then
+        "$(sudo port select --set pip pip36)"
+    fi
 
-sudo -H pip3 install thefuck
+    # Backup zsh configurations
+    backup_folder .oh-my-zsh
 
-# Backup zsh configurations
-backup_folder .oh-my-zsh
+    cd ~
 
-cd ~
+    # Install oh-my-zsh
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-# Install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    # Backup zsh configurations (has to be done here since oh-my-zsh.sh
+    # creates one in the previous step.
+    backup_file .zshrc
 
-# Backup zsh configurations
-backup_file .zshrc
+    create_file_link zsh zshrc
+    create_file_link zsh zsh_aliases
 
-create_file_link zsh zshrc
-create_file_link zsh zsh_aliases
-
-cd ~/dotfiles/zsh
-git submodule update --init --recursive
-cd ~
+    cd ~/dotfiles/zsh
+    git submodule update --init --recursive
+    cd ~
+}
 ##################################################
 
 ############## tmux specific steps ###############
-# Install tmux dependencies
-sudo apt -y install\
-    xclip
+tmux_steps() {
+    cd ~/dotfiles
+    # Install tmux dependencies
+    source lib/install tmux
+    source lib/install $(source lib/get_software_name xclip)
 
-# Backup tmux configurations
-backup_file .tmux.conf
+    # OS dependent post-processing
+    if [[ $(source lib/check_os) == "mac" ]]; then
+        sudo ln -s /opt/X11/bin/xclipboard /opt/X11/bin/xclip
+    fi
 
-# Create symlinks for tmux
-create_file_link tmux tmux.conf
+    # Backup tmux configurations
+    backup_file .tmux.conf
+
+    # Create symlinks for tmux
+    create_file_link tmux tmux.conf
+}
 ##################################################
 
+main() {
+    create_backup_folder
+    git_steps
+    vim_steps
+    zsh_steps
+    tmux_steps
+}
+
+main
