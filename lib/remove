@@ -1,0 +1,33 @@
+#! /bin/bash
+
+remove() {
+    echo "Uninstalling $1..."
+    
+    # https://github.com/Parth/dotfiles/blob/master/deploy
+    # Check if installed before removing
+    if ! [ -x "$(command -v $1)" ]; then
+        echo "$1 not installed"
+        return
+    fi
+
+    case "$(source lib/check_os)" in
+        mac)
+            if [ -x "$(command -v port)" ]; then
+                sudo port uninstall $1
+            elif [ -x "$(command -v brew)" ]; then
+                brew uninstall $1
+            else
+                echo "No package manager installed on your Mac"
+            fi
+            ;;
+        linux)
+            if [ -x "$(command -v apt)" ]; then
+                sudo apt -y remove $1
+            else
+                echo "No package manager installed on your Linux system"
+            fi
+    esac
+    echo "done."
+}
+
+remove $1
