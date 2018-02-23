@@ -1,2 +1,3 @@
 vim/plugged/
 *.sw[klmnop]
+.DS_Store
