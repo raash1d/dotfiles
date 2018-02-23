@@ -1,17 +1,13 @@
 [user]
 	name = raash1d
 	email = mransari@onboardsecurity.com
-[diff]
-	tool = meld
-[difftool "meld"]
-	path = /usr/bin/meld
-[difftool]
-	prompt = false
-[merge]
-	tool = meld
-[mergetool "meld"]
-	path = /usr/bin/meld
-[mergetool]
-	keepBackup = false
 [alias]
 	lgb = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches
+[diff]
+	tool = meld
+[merge]
+	tool = meld
+[difftool]
+	prompt = false
+[mergetool]
+	prompt = false

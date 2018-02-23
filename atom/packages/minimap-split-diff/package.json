@@ -1,0 +1,112 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "/private/var/folders/0v/t00ll2y5443bxqhwjfd_7_wm0000gn/T/d-117522-8478-pur5dd.z4vo3zbyb9/package.tgz",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/private/var/folders/0v/t00ll2y5443bxqhwjfd_7_wm0000gn/T/d-117522-8478-pur5dd.z4vo3zbyb9/package.tgz",
+        "spec": "/private/var/folders/0v/t00ll2y5443bxqhwjfd_7_wm0000gn/T/d-117522-8478-pur5dd.z4vo3zbyb9/package.tgz",
+        "type": "local"
+      },
+      "/private/var/folders/0v/t00ll2y5443bxqhwjfd_7_wm0000gn/T/apm-install-dir-117522-8478-1n4ody7.z09iyq4cxr"
+    ]
+  ],
+  "_from": "../d-117522-8478-pur5dd.z4vo3zbyb9/package.tgz",
+  "_id": "minimap-split-diff@0.3.7",
+  "_inCache": true,
+  "_location": "/minimap-split-diff",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/private/var/folders/0v/t00ll2y5443bxqhwjfd_7_wm0000gn/T/d-117522-8478-pur5dd.z4vo3zbyb9/package.tgz",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/private/var/folders/0v/t00ll2y5443bxqhwjfd_7_wm0000gn/T/d-117522-8478-pur5dd.z4vo3zbyb9/package.tgz",
+    "spec": "/private/var/folders/0v/t00ll2y5443bxqhwjfd_7_wm0000gn/T/d-117522-8478-pur5dd.z4vo3zbyb9/package.tgz",
+    "type": "local"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "file:../d-117522-8478-pur5dd.z4vo3zbyb9/package.tgz",
+  "_shasum": "2d0c3bec610422069f976fd12798a3b549224e9b",
+  "_shrinkwrap": null,
+  "_spec": "/private/var/folders/0v/t00ll2y5443bxqhwjfd_7_wm0000gn/T/d-117522-8478-pur5dd.z4vo3zbyb9/package.tgz",
+  "_where": "/private/var/folders/0v/t00ll2y5443bxqhwjfd_7_wm0000gn/T/apm-install-dir-117522-8478-1n4ody7.z09iyq4cxr",
+  "bugs": {
+    "url": "https://github.com/mupchrch/minimap-split-diff/issues"
+  },
+  "consumedServices": {
+    "split-diff": {
+      "versions": {
+        "1.0.0": "consumeSplitDiff"
+      }
+    },
+    "minimap": {
+      "versions": {
+        "1.0.0": "consumeMinimapServiceV1"
+      }
+    }
+  },
+  "dependencies": {
+    "event-kit": ">= 0.7.2"
+  },
+  "description": "A minimap plugin for the Split Diff package",
+  "devDependencies": {},
+  "engines": {
+    "atom": ">= 1.14.0 < 2.0.0"
+  },
+  "homepage": "https://github.com/mupchrch/minimap-split-diff#readme",
+  "license": "MIT",
+  "main": "./lib/minimap-split-diff",
+  "name": "minimap-split-diff",
+  "optionalDependencies": {},
+  "readme": "# minimap-split-diff package\n\nA plugin that adds [Split Diff's](https://github.com/mupchrch/split-diff) highlighting to the [Minimap](https://github.com/atom-minimap/minimap) view, making it easier to find differences throughout file versions in Atom.\n\n![Minimap Split Diff plugin in action](https://github.com/mupchrch/minimap-split-diff/raw/master/demo.gif)\n\n### Customization\n\nThe highlighting for this package uses global UI variables defined in your syntax theme. The variables are `@syntax-color-added`, `@syntax-color-removed`, and `@syntax-color-modified`. Make sure your theme defines these, so it is compatible with this package!\n\nTo override these colors in your `styles.less`, write selectors for `.minimap .added`, `.minimap .removed`, and/or `.minimap .selected`. For instance:\n\n```\n.minimap .added {\n  background: blue !important;\n}\n```\n\n### Notes\n\nBoth the Split Diff and Minimap packages must also be installed and enabled in Atom for this package to work.\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mupchrch/minimap-split-diff.git"
+  },
+  "version": "0.3.7",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [
+      {
+        "name": "event-kit",
+        "version": "2.3.0",
+        "path": "node_modules/event-kit/lib/event-kit.js"
+      }
+    ],
+    "extensions": {
+      ".coffee": [
+        "lib/minimap-split-diff-binding.coffee",
+        "lib/minimap-split-diff.coffee"
+      ],
+      ".json": [
+        "node_modules/event-kit/api.json",
+        "node_modules/event-kit/package.json",
+        "package.json"
+      ],
+      ".js": [
+        "node_modules/event-kit/lib/composite-disposable.js",
+        "node_modules/event-kit/lib/disposable.js",
+        "node_modules/event-kit/lib/emitter.js",
+        "node_modules/event-kit/lib/event-kit.js"
+      ]
+    },
+    "folders": [
+      {
+        "paths": [
+          "lib",
+          "",
+          "spec"
+        ],
+        "dependencies": {
+          "event-kit": ">= 0.7.2"
+        }
+      }
+    ]
+  }
+}
