@@ -4,25 +4,6 @@
 # Author: Raashid Ansari
 # Date: Feb 6, 2018
 
-# Help/Usage
-if [[ $1 == '-h' ]]; then
-    echo "usage: install.sh [-h] [-u]"
-    echo "-h show this help text"
-    echo "-u update settings by pulling from git repo"
-    exit 0
-fi
-
-# Update settings by downloading from git
-if [[ $1 == '-u' ]]; then
-    cd $HOME
-    if [ -d dotfiles ]; then
-        cd dotfiles
-        git pull
-        git submodule update --init --recursive
-    fi
-    exit 0
-fi
-
 ################ Helper functions ################
 backup_file() {
     echo -n "backing up file $1 ..."
@@ -87,12 +68,9 @@ vim_steps() {
     source lib/install g++
     source lib/install cmake
     source lib/install clang
-    source lib/install vim-ctrlp
-    source lib/install vim-syntastic
     source lib/install vim-gnome
     source lib/install vim-gtk3
     source lib/install vim-gtk3-py2
-    source lib/install vim-autopep8
     source lib/install python-dev
     source lib/install python3-dev
 
@@ -137,7 +115,6 @@ zsh_steps() {
     backup_file .zshrc
 
     create_file_link zsh zshrc
-    create_file_link zsh zsh_aliases
 
     cd ~/dotfiles/zsh
     git submodule update --init --recursive
