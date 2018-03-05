@@ -9,6 +9,7 @@ source $HOME/dotfiles/vim/vim_keybindings.vim
     colorscheme dracula
     syntax on
     filetype plugin indent on
+
     "make the highlighting of tabs and other non-text less annoying
     highlight SpecialKey ctermfg=236
     highlight NonText ctermfg=236
@@ -20,12 +21,7 @@ source $HOME/dotfiles/vim/vim_keybindings.vim
         set guifont=RobotoMono\ Nerd\ Font 12
     endif
     set colorcolumn=80
-    set number relativenumber
-    augroup numbertoggle
-    autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-    autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-    augroup END
+    set number
     set ttyfast
     set cmdheight=1 "command bar height
     set showmatch "show matching braces
@@ -121,6 +117,16 @@ endif
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
+
+" Mouse scrolling
+nmap <ScrollWheelUp> <C-Y>
+nmap <S-ScrollWheelUp> <C-U>
+nmap <ScrollWheelDown> <C-E>
+nmap <S-ScrollWheelDown> <C-D>
+
+" General scrolling
+set scrolloff=5
+set lazyredraw
 
 let python_highlight_all=1
 syntax on

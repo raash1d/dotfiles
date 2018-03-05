@@ -83,7 +83,7 @@ vim_steps() {
     create_folder_link vim 
 
     # Install vim plugins
-    vim +:PlugClean +:PlugInstall
+    vim +:PlugClean +:PlugInstall +qa
 
     # Complete YouCompleteMe configuration
     $HOME/.vim/plugged/YouCompleteMe/install.py --clang-completer
@@ -97,7 +97,7 @@ zsh_steps() {
     source lib/install fonts-powerline
     source lib/install $(source lib/get_software_name pip) 
     source lib/install curl
-    
+
     if [[ $(source lib/check_os) == "mac" ]]; then
         "$(sudo port select --set pip pip36)"
     fi
@@ -142,12 +142,21 @@ tmux_steps() {
 }
 ##################################################
 
+############### mac specific steps ###############
+mac_steps() {
+    sudo scutil --set HostName "raashid-mac.jjj-i.com"
+}
+
 main() {
     create_backup_folder
     git_steps
     vim_steps
     zsh_steps
     tmux_steps
+    if [[ $(source lib/check_os) == "mac" ]]; then
+        mac_steps
+    fi
+    exit
 }
 
 main
