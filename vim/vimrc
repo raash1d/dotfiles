@@ -126,11 +126,10 @@ nmap <S-ScrollWheelDown> <C-D>
 
 " General scrolling
 set scrolloff=5
-set lazyredraw
+"set lazyredraw
 
 let python_highlight_all=1
 syntax on
-au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /\s\+$/
 "================================
 
 " Trigger configuration. Do not use <tab> if you use
