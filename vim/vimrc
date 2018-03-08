@@ -15,11 +15,7 @@ source $HOME/dotfiles/vim/vim_keybindings.vim
     highlight NonText ctermfg=236
 
     set encoding=utf-8
-    if has('mac')
-        set guifont=RobotoMono\ Nerd\ Font:h12
-    else
-        set guifont=RobotoMono\ Nerd\ Font 12
-    endif
+    "set guifont=RobotoMono\ Nerd\ Font:h12
     set colorcolumn=80
     set number
     set ttyfast
