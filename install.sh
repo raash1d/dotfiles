@@ -131,7 +131,7 @@ tmux_steps() {
 
     # OS dependent post-processing
     if [[ $(source lib/check_os) == "mac" ]]; then
-        sudo ln -s /opt/X11/bin/xclipboard /opt/X11/bin/xclip
+        sudo ln -s /opt/local/bin/xclipboard /opt/local/bin/xclip
     fi
 
     # Backup tmux configurations
@@ -142,10 +142,29 @@ tmux_steps() {
 }
 ##################################################
 
+############### linux specific steps ###############
+linux_steps() {
+    mkdir -p ~/.local/share/fonts
+    cd ~/.local/share/fonts
+    curl -fLo "Roboto Mono Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/RobotoMono/Regular/complete/Roboto%20Mono%20Nerd%20Font%20Complete.ttf
+    curl -fLo "Roboto Mono Nerd Font Complete Mono.ttf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/RobotoMono/Regular/complete/Roboto%20Mono%20Nerd%20Font%20Complete%20Mono.ttf
+}
+##################################################
+
 ############### mac specific steps ###############
 mac_steps() {
     sudo scutil --set HostName "raashid-mac.jjj-i.com"
+    cd ~/Library/Fonts
+    curl -fLo "Roboto Mono Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/RobotoMono/Regular/complete/Roboto%20Mono%20Nerd%20Font%20Complete.ttf
+    curl -fLo "Roboto Mono Nerd Font Complete Mono.ttf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/RobotoMono/Regular/complete/Roboto%20Mono%20Nerd%20Font%20Complete%20Mono.ttf
 }
+##################################################
+
+############### steps to perform manually ###############
+manual_steps() {
+    echo "change your font to Roboto Mono for terminal/iterm2"
+}
+##################################################
 
 main() {
     create_backup_folder
@@ -155,8 +174,11 @@ main() {
     tmux_steps
     if [[ $(source lib/check_os) == "mac" ]]; then
         mac_steps
+    elif [[ $(source lib/check_os) == "linux" ]]; then
+        linux_steps
     fi
-    exit
+    cd ~/dotfiles
+    manual_steps
 }
 
 main
