@@ -1,8 +1,4 @@
 source $HOME/dotfiles/zsh/paths.zsh
-# source system specific paths, if exists
-if [ -e $HOME/.localrc ]; then
-    source ~/.localrc
-fi
 
 ZSH_THEME="raash1d"
 
