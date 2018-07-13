@@ -9,7 +9,7 @@ c() {
     cd $1;
     ls;
 }
-alias cd="c"       
+alias cd="c"
 
 # tmux aliases
 alias ta='tmux attach'

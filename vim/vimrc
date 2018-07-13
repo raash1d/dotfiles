@@ -144,9 +144,9 @@ set history=100
 " Smart tabbing and indentation
 filetype indent on
 set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
-set tabstop=4 " the visible width of tabs
-set shiftwidth=4 " number of spaces to use for indent and unindent
-set softtabstop=4 " edit as if the tabs are 4 characters wide
+set tabstop=2 " the visible width of tabs
+set shiftwidth=2 " number of spaces to use for indent and unindent
+set softtabstop=2 " edit as if the tabs are 4 characters wide
 set expandtab
 set smartindent
 set autoindent
