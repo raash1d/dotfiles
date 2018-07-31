@@ -71,5 +71,8 @@ Plug 'sickill/vim-pasta'
     " a simple tool for presenting slides in vim based on text files
     Plug 'sotte/presenting.vim', { 'for': 'markdown' }
 " }
+
+" Indentation guides
+Plug 'nathanaelkane/vim-indent-guides', { 'for': ['cpp', 'python', 'python3'] }
 call plug#end()
 

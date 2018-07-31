@@ -176,6 +176,7 @@ set expandtab
 set smartindent
 set autoindent
 set shiftround " round indent to a multiple of 'shiftwidth'
+let g:indent_guides_enable_on_vim_startup=1
 
 " code folding settings
 set foldmethod=syntax " fold based on indent
