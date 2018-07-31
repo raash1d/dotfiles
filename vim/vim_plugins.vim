@@ -52,7 +52,7 @@ else
 endif
 
 " Python linter
-Plug 'tell-k/vim-autopep8', { 'for': 'python' }
+"Plug 'nvie/vim-flake8', { 'for': 'python' }
 
 " tmux integration for vim
 Plug 'benmills/vimux'

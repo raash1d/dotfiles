@@ -45,11 +45,36 @@ source $HOME/dotfiles/vim/vim_keybindings.vim
 " }
 
 " signify {
-let g:signify_vcs_list = [ 'git' ]
-let g:signify_sign_add = '+'
-let g:signify_sign_delete = '_'
-let g:signify_sign_delete_first_line = '‾'
-let g:signify_sign_change = '~'
+  let g:signify_vcs_list = [ 'git' ]
+  let g:signify_sign_add = '+'
+  let g:signify_sign_delete = '_'
+  let g:signify_sign_delete_first_line = '‾'
+  let g:signify_sign_change = '~'
+" }
+
+" vim-autopep-8 {
+  "let g:autopep8_indent_size = 2
+  "let g:autopep8_on_save = 1
+" }
+
+" vim-flake8 {
+  "autocmd BufWritePost *.py call Flake8()
+  "let g:flake8_show_in_gutter=1
+  "call flake8#Flake8UnplaceMarkers()
+" }
+
+" syntastic {
+  let g:syntastic_always_populate_loc_list=0
+  let g:syntastic_auto_loc_list=0
+  let g:syntastic_check_on_open=0
+  let g:syntastic_check_on_wq=0
+  let g:syntastic_warning_symbol='WW'
+  let g:syntastic_error_symbol='EE'
+  let g:syntastic_quiet_messages={ 'regex' : ['E111',
+        \ 'E114',
+        \ 'superfluous-parens',
+        \ 'missing-docstring',
+        \ 'too-many-locals'] }
 " }
 
 " vim-fugitive {
