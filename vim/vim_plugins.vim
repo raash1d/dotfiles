@@ -73,6 +73,7 @@ Plug 'sickill/vim-pasta'
 " }
 
 " Indentation guides
-Plug 'nathanaelkane/vim-indent-guides', { 'for': ['cpp', 'python', 'python3'] }
+"Plug 'nathanaelkane/vim-indent-guides', { 'for': ['cpp', 'python', 'python3'] }
+Plug 'Yggdroot/indentLine', { 'for': ['cpp', 'python', 'python3'] }
 call plug#end()
 

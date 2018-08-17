@@ -176,8 +176,10 @@ set expandtab
 set smartindent
 set autoindent
 set shiftround " round indent to a multiple of 'shiftwidth'
-let g:indent_guides_enable_on_vim_startup=1
-let g:indent_guides_guide_size=1
+"let g:indent_guides_enable_on_vim_startup=1
+"let g:indent_guides_guide_size=1
+let g:indentLine_char = '|'
+let g:indentLine_color_term = 239
 
 " code folding settings
 set foldmethod=syntax " fold based on indent
@@ -220,5 +222,5 @@ vnoremap . :normal .<cr>
 "endif
 
 set clipboard=unnamed
-let g:ycm_global_ycm_extra_conf = '~/dotfiles/vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/dotfiles/vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 
