@@ -43,6 +43,8 @@ else
     echo "tmux not installed"
 fi
 
+setopt extended_glob
+
 source $DOTFILES/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $DOTFILES/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 

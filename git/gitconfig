@@ -11,3 +11,5 @@
 	prompt = false
 [mergetool]
 	prompt = false
+[color]
+	ui = auto

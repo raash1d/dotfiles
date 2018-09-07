@@ -1,27 +1,38 @@
 #! /bin/bash
 
 printUsage() {
-  echo "Usage: switch_environment.sh <mps | f2md>";
+  echo "Usage: $0 <mps | f2md | osm2sumo>";
+  exit
 }
 
 if [[ $# < 1 ]]; then
   printUsage
-  exit
 fi
 
 rm -rf omnetpp sumo
 
-if [[ $1 == "mps" ]]; then
-  echo -n "switching to mps environment..."
-  ln -s ~/src/omnetpp-5.3/ omnetpp
-  ln -s ~/src/sumo-0.32.0/ sumo
-  echo "done"
-elif [[ $1 == "f2md" ]]; then
-  echo -n "switching to f2md environment..."
-  ln -s ~/src/omnetpp-5.2/ omnetpp
-  ln -s ~/src/sumo-0.30.0/ sumo
-  echo "done"
-else
-  echo "Invalid option"
-  printUsage
-fi
+echo -n "switching to $1 environment..."
+
+case $1 in
+  "mps")
+    ln -s ~/src/omnetpp-5.3/ omnetpp
+    ln -s ~/src/sumo-0.32.0/ sumo
+    ;;
+
+  "f2md")
+    ln -s ~/src/omnetpp-5.2/ omnetpp
+    ln -s ~/src/sumo-0.30.0/ sumo
+    ;;
+
+  "osm2sumo")
+    ln -s ~/src/omnetpp-5.3/ omnetpp
+    ln -s ~/src/sumo-0.25.0/ sumo
+    ;;
+
+  *)
+    echo "$1 is an invalid option"
+    printUsage
+    ;;
+esac
+
+echo "done"

@@ -95,9 +95,10 @@ source $HOME/dotfiles/vim/vim_keybindings.vim
     nmap <silent> <leader>n :call ToggleNerdTree()<cr>
     " find the current file in nerdtree without needing to reload the drawer
     nmap <silent> <leader>f :NERDTreeFind<cr>
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     "autocmd VimEnter * if &filetype == 'c' || &filetype == 'cpp' || &filetype == 'python' ||  | NERDTreeToggle | endif
-    autocmd VimEnter * NERDTreeFind
+    autocmd VimEnter * NERDTree
+    autocmd BufEnter * NERDTreeMirror
     autocmd VimEnter * wincmd p
 
     "let NERDTreeShowHidden=1
