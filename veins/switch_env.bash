@@ -1,7 +1,7 @@
 #! /bin/bash
 
 printUsage() {
-  echo "Usage: $0 <mps | f2md | osm2sumo>";
+  echo "Usage: $0 <mps | f2md | osm2sumo | veremi>";
   exit
 }
 
@@ -27,6 +27,11 @@ case $1 in
   "osm2sumo")
     ln -s ~/src/omnetpp-5.3/ omnetpp
     ln -s ~/src/sumo-0.25.0/ sumo
+    ;;
+
+  "veremi")
+    ln -s ~/src/omnetpp-5.1.1/ omnetpp
+    ln -s ~/src/sumo-0.30.0/ sumo
     ;;
 
   *)
