@@ -32,10 +32,6 @@ Plug 'tpope/vim-surround', { 'for': ['cpp', 'python', 'python3'] }
 " Git plugin for vim
 Plug 'tpope/vim-fugitive'
 
-" Snippets utility
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-
 "Doxygen comment helper
 Plug 'vim-scripts/DoxygenToolkit.vim', { 'for': ['cpp', 'python', 'python3'] }
 
