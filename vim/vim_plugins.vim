@@ -57,7 +57,7 @@ Plug 'benmills/vimux'
 Plug 'sickill/vim-pasta'
 
 " NERDTree {
-    Plug 'scrooloose/nerdtree' ", { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+    Plug 'scrooloose/nerdtree' , { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
     Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'ryanoasis/vim-devicons'
 "}

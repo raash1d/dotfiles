@@ -97,9 +97,9 @@ source $HOME/dotfiles/vim/vim_keybindings.vim
     nmap <silent> <leader>f :NERDTreeFind<cr>
     autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     "autocmd VimEnter * if &filetype == 'c' || &filetype == 'cpp' || &filetype == 'python' ||  | NERDTreeToggle | endif
-    autocmd VimEnter * NERDTree
-    autocmd BufEnter * NERDTreeMirror
-    autocmd VimEnter * wincmd p
+    "autocmd VimEnter * NERDTree
+    "autocmd BufEnter * NERDTreeMirror
+    "autocmd VimEnter * wincmd p
 
     "let NERDTreeShowHidden=1
     "let NERDTreeDirArrowExpandable = '▷'
