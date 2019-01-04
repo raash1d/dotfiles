@@ -1,3 +1,7 @@
+" Remap leader key to ','
+let mapleader=','
+
+
 " Easier traversing between split windows
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>

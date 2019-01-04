@@ -48,7 +48,9 @@ else
 endif
 
 " Python linter
-"Plug 'nvie/vim-flake8', { 'for': 'python' }
+"Plug 'nvie/vim-flake8', { 'for': 'python3' } " makes saving py files too slow
+Plug 'plytophogy/vim-virtualenv', { 'for': ['python', 'python3'] }
+Plug 'majutsushi/tagbar', { 'for': ['c', 'h', 'cpp', 'python', 'python3'] }
 
 " tmux integration for vim
 Plug 'benmills/vimux'
@@ -70,6 +72,17 @@ Plug 'sickill/vim-pasta'
 
 " Indentation guides
 "Plug 'nathanaelkane/vim-indent-guides', { 'for': ['cpp', 'python', 'python3'] }
-Plug 'Yggdroot/indentLine', { 'for': ['cpp', 'python', 'python3'] }
+Plug 'Yggdroot/indentLine', { 'for': ['cpp', 'python', 'python3', 'js', 'html', 'css'] }
+
+" Javascript Plugins
+" {
+    Plug 'pangloss/vim-javascript', { 'for': ['js', 'html'] }
+    Plug 'moll/vim-node', { 'for': ['js', 'html'] }
+    Plug 'sergioramos/jsctags', { 'for': ['js', 'html'] }
+    Plug 'othree/html5-syntax.vim', { 'for': ['js', 'html'] }
+    Plug 'othree/html5.vim', { 'for': ['js', 'html'] }
+    Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['js', 'html'] }
+    Plug 'ternjs/tern_for_vim', { 'for': ['js', 'html'] }
+" }
 call plug#end()
 

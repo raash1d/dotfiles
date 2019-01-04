@@ -1,14 +1,26 @@
-source $HOME/dotfiles/vim/vim_plugins.vim
 source $HOME/dotfiles/vim/vim_keybindings.vim
+source $HOME/dotfiles/vim/vim_plugins.vim
 
 " Appearance {
     set wrap " turn on line wrapping
     set wrapmargin=8 " wrap lines when coming within n characters from side
     set linebreak " set soft wrapping
     set showbreak=… " show ellipsis at breaking
-    colorscheme dracula
-    syntax on
+    syntax enable
+
+    " Dracula Theme {
+      let g:airline_theme='dracula'
+      colorscheme dracula
+    " }
+    " Vim-One theme {
+      "let g:airline_theme='one'
+      "colorscheme one
+      "set background=light " for the light version
+      "set background=dark " for the light version
+    " }
+
     filetype plugin indent on
+    set relativenumber
 
     "make the highlighting of tabs and other non-text less annoying
     highlight SpecialKey ctermfg=236
@@ -28,9 +40,6 @@ source $HOME/dotfiles/vim/vim_keybindings.vim
         let g:airline_powerline_fonts=1
         let g:airline_left_sep=''
         let g:airline_right_sep=''
-        "let g:airline_theme='base16'
-        let g:airline_theme='dracula'
-        "let g:airline_theme='dracula'
         let g:airline#extensions#tabline#show_splits = 0
         let g:airline#extensions#whitespace#enabled = 0
         " enable airline tabline
@@ -80,6 +89,10 @@ source $HOME/dotfiles/vim/vim_keybindings.vim
 " vim-fugitive {
     nmap <silent> <leader>gs :Gstatus<cr>
     nmap <leader>ge :Gedit<cr>
+" }
+
+" vim-pasta and ctrl-p conflict resolution {
+  let g:pasta_disabled_filetypes = ['ctrlp']
 " }
 
 " NERDTree {
@@ -154,18 +167,36 @@ nmap <S-ScrollWheelDown> <C-D>
 set scrolloff=5
 "set lazyredraw
 
-let python_highlight_all=1
-syntax on
-"================================
+" Python {
+  let python_highlight_all=1
+  let g:ycm_python_binary_path = 'python3'
+
+  au BufNewFile,BufRead *.py |
+        \ set tabstop=4 |
+        \ set softtabstop=4 |
+        \ set shiftwidth=4 |
+        \ set textwidth=79 |
+        \ set expandtab |
+        \ set autoindent |
+        \ set fileformat=unix
+" }
+
+" Tagbar {
+    nnoremap <leader>t :TagbarToggle<CR>
+" }
+
+" Javascript {
+  au BufNewFile,BufRead *.js,*.html,*.css
+        \ set tabstop=2 |
+        \ set softtabstop=2 |
+        \ set shiftwidth=2
+" }
 
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-<Tab>>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" Airline plugin
-"let g:airline_theme='dracula'
 
 " Keep more info in memory to speed things up:
 set hidden
@@ -176,33 +207,33 @@ filetype indent on
 set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
 set tabstop=2 " the visible width of tabs
 set shiftwidth=2 " number of spaces to use for indent and unindent
-set softtabstop=2 " edit as if the tabs are 4 characters wide
+set softtabstop=2 " edit as if the tabs are 2 characters wide
 set expandtab
 set smartindent
 set autoindent
 set shiftround " round indent to a multiple of 'shiftwidth'
 "let g:indent_guides_enable_on_vim_startup=1
 "let g:indent_guides_guide_size=1
-let g:indentLine_char = '|'
+let g:indentLine_char = '│'
 let g:indentLine_color_term = 239
 
 " code folding settings
-set foldmethod=syntax " fold based on indent
+set foldmethod=indent " fold based on indent
 set foldlevelstart=99
 set foldnestmax=10 " deepest fold is 10 levels
 set nofoldenable " don't fold by default
-set foldlevel=1
+set foldlevel=99
 
 " toggle invisible characters
 set list
 set listchars=tab:→\ ,trail:⋅,extends:❯,precedes:❮
 set showbreak=↪
 
-set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
-if &term =~ '256color'
+"set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
+"if &term =~ '256color'
     " disable background color erase
-    set t_ut=
-endif
+    "set t_ut=
+"endif
 
  "enable 24 bit color support if supported
 "if (has('mac') && empty($TMUX) && has("termguicolors"))
@@ -220,12 +251,16 @@ vnoremap . :normal .<cr>
 " using the variable g:os below you can create OS dependent vim config
 "if !exists("g:os")
 "    if has("win64") || has("win32") || has("win16")
-"        let g:os = "Windows"
+"        let g:os = \"Windows"
 "    else
 "        let g:os = substitute(system('uname'), '\n', '', '')
 "    endif
 "endif
 
 set clipboard=unnamed
+
+" YouCompleteMe Configuration
 let g:ycm_global_ycm_extra_conf = '~/dotfiles/vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
