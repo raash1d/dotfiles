@@ -8,6 +8,7 @@ call plug#begin('~/.vim/plugged')
 " Themes
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'rakr/vim-one'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
 
 " NERD Commenter
 Plug 'scrooloose/nerdcommenter'

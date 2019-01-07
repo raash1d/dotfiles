@@ -6,11 +6,33 @@ source $HOME/dotfiles/vim/vim_plugins.vim
     set wrapmargin=8 " wrap lines when coming within n characters from side
     set linebreak " set soft wrapping
     set showbreak=… " show ellipsis at breaking
-    syntax enable
+    syntax on
 
+    " Enable true color
+    if exists('+termguicolors')
+      let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+      let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+      set termguicolors
+    endif
+
+    " OneHalf Theme {
+      let hour = strftime("%H")
+      if hour >= 11 && hour < 4 + 12
+        colorscheme onehalflight
+        let g:airline_theme='onehalflight'
+      else
+        colorscheme onehalfdark
+        let g:airline_theme='onehalfdark'
+      endif
+
+      set t_Co=256
+      set cursorline
+      " lightline
+      " let g:lightline.colorscheme='onehalfdark'
+    " }
     " Dracula Theme {
-      let g:airline_theme='dracula'
-      colorscheme dracula
+      "let g:airline_theme='dracula'
+      "colorscheme dracula
     " }
     " Vim-One theme {
       "let g:airline_theme='one'
