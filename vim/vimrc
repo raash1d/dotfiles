@@ -27,8 +27,6 @@ source $HOME/dotfiles/vim/vim_plugins.vim
 
       set t_Co=256
       set cursorline
-      " lightline
-      " let g:lightline.colorscheme='onehalfdark'
     " }
     " Dracula Theme {
       "let g:airline_theme='dracula'

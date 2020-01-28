@@ -77,13 +77,13 @@ Plug 'Yggdroot/indentLine', { 'for': ['cpp', 'python', 'python3', 'js', 'html', 
 
 " Javascript Plugins
 " {
-    Plug 'pangloss/vim-javascript', { 'for': ['js', 'html'] }
-    Plug 'moll/vim-node', { 'for': ['js', 'html'] }
-    Plug 'sergioramos/jsctags', { 'for': ['js', 'html'] }
-    Plug 'othree/html5-syntax.vim', { 'for': ['js', 'html'] }
-    Plug 'othree/html5.vim', { 'for': ['js', 'html'] }
-    Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['js', 'html'] }
-    Plug 'ternjs/tern_for_vim', { 'for': ['js', 'html'] }
+    Plug 'pangloss/vim-javascript', { 'for': ['js', 'css', 'html'] }
+    Plug 'moll/vim-node', { 'for': ['js', 'css', 'html'] }
+    Plug 'sergioramos/jsctags', { 'for': ['js', 'css', 'html'] }
+    Plug 'othree/html5-syntax.vim', { 'for': ['js', 'css', 'html'] }
+    Plug 'othree/html5.vim', { 'for': ['js', 'css', 'html'] }
+    Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['js', 'css', 'html'] }
+    Plug 'ternjs/tern_for_vim', { 'for': ['js', 'css', 'html'] }
 " }
 call plug#end()
 
