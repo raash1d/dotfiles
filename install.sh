@@ -46,6 +46,7 @@ git_steps() {
         cd
         cp ~/dotfiles/git/.gitconfig .
     )
+    git submodule update --init --recursive
 }
 ##################################################
 
@@ -91,8 +92,7 @@ zsh_steps() {
     create_file_link zsh .zshrc
 
     cd ~/dotfiles/zsh
-    git submodule update --init --recursive
-    cd ~
+    cd
 }
 ##################################################
 
