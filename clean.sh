@@ -1,7 +1,7 @@
 #! /bin/bash
 
-cd ~
-rm -rf .git_aliases .gitconfig .tmux.conf\
+cd
+rm -rf .gitconfig .tmux.conf\
     .vim .vimrc .aliases .zshrc .oh-my-zsh\
     ~/dotfiles/vim/plugged /opt/X11/bin/xclip
 cd dotfiles
@@ -18,7 +18,7 @@ if [[ $1 == "more" ]]; then
     source lib/remove python-dev
     source lib/remove python3-dev
     source lib/remove fonts-powerline
-    source lib/remove $(source lib/get_software_name pip)
+    source lib/remove pip
     source lib/remove curl
-    source lib/remove $(source lib/get_software_name xclip)
+    source lib/remove xclip
 fi

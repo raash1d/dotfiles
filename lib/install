@@ -1,31 +1,31 @@
-install() {
-    echo "Installing $1..."
+echo "Installing $1..."
 
-    # https://github.com/Parth/dotfiles/blob/master/deploy
-    # Check if installed before installing
-    if [ -x "$(command -v $1)" ]; then
-        echo "$1 installed"
-        return
-    fi
+# https://github.com/Parth/dotfiles/blob/master/deploy
+# Check if installed before installing
+if [ -x "$(command -v $1)" ]; then
+    echo "$1 installed"
+    return
+fi
 
-    case "$(source lib/check_os)" in
-        mac)
-            if [ -x "$(command -v port)" ]; then
-                sudo port install $1
-            elif [ -x "$(command -v brew)" ]; then
-                brew install $1
-            else
-                echo "No package manager installed on your Mac"
-            fi
+case "$(uname)" in
+    Darwin)
+        if [ -x "$(command -v brew)" ]; then
+            brew install $1
+        else
+            echo "No package manager installed on your Mac. Only Homebrew is supported on macOS."
+        fi
+        ;;
+    Linux)
+        case $(lsb_release -si) in
+        Ubuntu|elementary)
+            sudo apt install $1 -y
             ;;
-        linux)
-            if [ -x "$(command -v apt)" ]; then
-                sudo apt -y install $1
-            else
-                echo "No package manager installed on your Linux system"
-            fi
-    esac
-    echo "done."
-}
-
-install $1
+        *)
+            echo "This linux distro is not supported yet."
+            ;;
+        esac
+    *)
+        echo "Your OS is not supported yet."
+        ;;
+esac
+echo "done."

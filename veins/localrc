@@ -1,4 +1,4 @@
-export SUMO_HOME=$HOME/src/sumo
-SUMO_BIN=$SUMO_HOME/bin
-export OMNETPP_HOME=$HOME/src/omnetpp/bin
-export PATH=$PATH:$SUMO_HOME:$SUMO_BIN:$OMNETPP_HOME
+export SUMO_HOME="~/src/sumo"
+SUMO_BIN="$SUMO_HOME/bin"
+export OMNETPP_HOME="~/src/omnetpp/bin"
+export PATH="$PATH:$SUMO_HOME:$SUMO_BIN:$OMNETPP_HOME"

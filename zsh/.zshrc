@@ -20,15 +20,15 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM=$HOME/dotfiles/zsh/themes
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Which plugins would you like to load? (plugins can be found in $HOME/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to $HOME/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
-  vi-mode
-  sudo
-  tmux
+    git
+    vi-mode
+    sudo
+    tmux
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -36,15 +36,17 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 source $DOTFILES/zsh/aliases.zsh
 
+# For custom scripts
+source $DOTFILES/zsh/scripts.zsh
+
 # Run tmux if exists (https://github.com/Parth/dotfiles/blob/master/zsh/zshrc_manager.sh)
 if command -v tmux>/dev/null; then
-    [ -z $TMUX ] && exec tmux
+        [ -z $TMUX ] && exec tmux
 else 
-    echo "tmux not installed"
+        echo "tmux not installed"
 fi
 
 setopt extended_glob
 
 source $DOTFILES/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $DOTFILES/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-

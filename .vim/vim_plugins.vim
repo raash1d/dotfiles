@@ -85,5 +85,20 @@ Plug 'Yggdroot/indentLine', { 'for': ['cpp', 'python', 'python3', 'js', 'html', 
     Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['js', 'html'] }
     Plug 'ternjs/tern_for_vim', { 'for': ['js', 'html'] }
 " }
+
+" TypeScript Plugins
+" {
+    " REQUIRED: Add a syntax file. YATS is the best
+    Plug 'HerringtonDarkholme/yats.vim'
+    Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+     " For async completion
+    Plug 'Shougo/deoplete.nvim'
+    " For Denite features
+    Plug 'Shougo/denite.nvim'
+
+
+    " Enable deoplete at startup
+    let g:deoplete#enable_at_startup = 1
+" }
 call plug#end()
 
