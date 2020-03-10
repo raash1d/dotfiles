@@ -42,7 +42,10 @@ git_steps() {
     lib/install git
 
     # Create git symlinks
-    create_file_link git .gitconfig
+    (
+        cd
+        cp ~/dotfiles/git/.gitconfig .
+    )
 }
 ##################################################
 
