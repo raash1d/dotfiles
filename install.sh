@@ -245,8 +245,9 @@ main() {
         *)
             echo "Unfortunately your linux distro is not supported yet. :("
             exit
-        ;;
+            ;;
         esac
+        ;;
     *)
         echo "Unfortunately your OS is not supported yet. :("
         exit
