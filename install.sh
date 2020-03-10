@@ -242,6 +242,9 @@ main() {
         Ubuntu)
             echo "You're on Ubuntu, IT'S SUPPORTED! :)"
             ;;
+        elementary)
+            echo "You're on elementaryOS, IT'S SUPPORTED! :)"
+            ;;
         *)
             echo "Unfortunately your linux distro is not supported yet. :("
             exit
