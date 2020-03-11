@@ -9,7 +9,7 @@
 create_file_link() {
     echo -n "creating link for $2 ..."
     if ! [ -f ~/$2 ]; then
-        ln -s ~/dotfiles/$1/$2 ~/$2
+        ln -s -f ~/dotfiles/$1/$2 ~/$2
     fi
     echo " done."
 }
@@ -17,7 +17,7 @@ create_file_link() {
 create_folder_link() {
     echo -n "creating link for folder $1 ..."
     if ! [ -d ~/$1 ]; then
-        ln -s ~/dotfiles/$1 ~/$1
+        ln -s -f ~/dotfiles/$1 ~/$1
     fi
     echo " done."
 }
@@ -89,10 +89,19 @@ zsh_steps() {
     # Install oh-my-zsh
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
+    # clean up previous zsh configs
+    (
+        cd
+        if [ -f .zshrc ]; then
+            rm .zshrc
+        fi
+        
+        if [ -f .zshrc.pre-oh-my-zsh ]; then
+            rm .zshrc.pre-oh-my-zsh
+        fi
+    )
+    
     create_file_link zsh .zshrc
-
-    cd ~/dotfiles/zsh
-    cd
 }
 ##################################################
 
@@ -103,11 +112,8 @@ tmux_steps() {
     lib/install tmux
     
     # Create symlinks for tmux
-    (
-        cd
-        ln -s -f dotfiles/.tmux/.tmux.conf
-        ln -s -f dotfiles/tmux/.tmux.conf.local
-    )
+    create_file_link .tmux .tmux.conf
+    create_file_link tmux .tmux.conf.local
 
     case "$(uname)" in
     Darwin)
@@ -128,7 +134,7 @@ install_fonts() {
         git clone https://github.com/ryanoasis/nerd-fonts.git --depth=1
         # install
         cd nerd-fonts
-            ./install.sh Inconsolata
+            ./install.sh FiraCode
         # clean-up a bit
         cd ..
         rm -rf nerd-fonts
@@ -197,6 +203,9 @@ pre_install_steps() {
         curl -LO --progress-bar "$golangURL"
         sudo tar -C /usr/local -xzf "${golangURL##*/}" # get name of tarball only
     cd -
+    
+    # Temporarily export go path in PATH
+    export PATH="$PATH:/usr/local/go/bin"
 
     # tools on linux
     if [[ "$(uname)" == "Linux" ]]; then
