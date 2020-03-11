@@ -219,7 +219,7 @@ pre_install_steps() {
 
     # node/javascript/typescript toolchain
     lib/install npm
-    npm install -g typescript
+    sudo npm install -g typescript
 
     # generic utilities
     lib/install curl
