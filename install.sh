@@ -177,8 +177,9 @@ pre_install_steps() {
         #install python toolchain
         cd /tmp
             curl -LO --progress-bar "$pythonURL"
-            tar xf ${pythonURL##*/} # get tarball name only
-            cd "${${pythonURL##*/}%.tar.xz}" # get folder name only
+            py_tarball=${pythonURL##*/} # get tarball name only
+            tar xf py_tarball
+            cd "${py_tarball%.*.*}" # get folder name only
                 ./configure
                 sudo make -j2
                 sudo make install
