@@ -168,10 +168,11 @@ pre_install_steps() {
     Darwin)
         # install Homebrew on macOS
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-        brew install python
+        brew install python zlib
         ;;
     Linux)
-        sudo apt install python3 -y
+        sudo apt install python3 python3-pip -y
+        sudo -H pip3 install zlib
         # echo -n "Enter Python toolchain tarball (.tar.xz) link from https://www.python.org/downloads/: "
         # read pythonURL
 
