@@ -25,7 +25,7 @@ Plug 'ervandew/supertab'
 Plug 'mhinz/vim-signify'
 
 " YouCompleteMe
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer', 'for': ['c', 'cpp', 'python', 'python3'] }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --clangd-completer --go-completer --ts-completer --rust-completer', 'for': ['c', 'cpp', 'python', 'python3', 'go', 'rust', 'js', 'ts'] }
 
 " Vim Surround
 Plug 'tpope/vim-surround', { 'for': ['cpp', 'python', 'python3'] }

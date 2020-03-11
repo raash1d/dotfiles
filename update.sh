@@ -4,3 +4,5 @@
 git pull --recurse-submodules
 vim +PlugClean +PlugUpdate +qa
 
+sudo npm install -g npm
+

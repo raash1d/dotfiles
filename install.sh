@@ -29,26 +29,27 @@ create_folder_link() {
 git_steps() {
     # Check/Install git dependencies
 
+    echo "Installing Meld diff viewer"
     case "$(uname)" in
         Darwin)
-            if [ -x "$(command -v brew)" ]; then
-                brew tap homebrew/cask
-                brew cask install meld
-            else
-                echo "Only Homebrew is supported on macOS."
-            fi
+            brew tap homebrew/cask
+            brew cask install meld
             ;;
         Linux)
             lib/install meld
+            ;;
     esac
 
+    echo "Installing Git"
     lib/install git
 
     # Create git symlinks
+    echo "Creating git symlinks"
     (
         cd
         cp ~/dotfiles/git/.gitconfig .
     )
+    echo "Cloning Git submodules"
     git submodule update --init --recursive
 }
 ##################################################
@@ -58,6 +59,7 @@ vim_steps() {
     # Remove vim-tiny
     lib/remove vim-tiny
 
+    echo "Installing Vim"
     case "$(uname)" in
     Darwin)
         brew install macvim
@@ -72,27 +74,27 @@ vim_steps() {
     create_file_link .vim .vimrc
     create_folder_link .vim 
 
-    # Install plugin manager Vim-Plug
+    echo "Installing plugin manager Vim-Plug"
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
     # Install vim plugins
     vim +:PlugClean +:PlugInstall +qa
-
-    # Complete YouCompleteMe configuration
-    ~/.vim/plugged/YouCompleteMe/install.py --clang-completer --clangd-completer --go-completer --ts-completer --rust-completer
 }
 ##################################################
 
 ############### zsh specific steps ###############
 zsh_steps() {
     # Install zsh dependencies
+    echo "Installing zsh"
     lib/install zsh
 
     # Install oh-my-zsh
+    echo "Downloading and Installing oh-my-zsh framework"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
     # clean up previous zsh configs
+    echo "Cleaning up previous zsh config files"
     (
         cd
         if [ -f .zshrc ]; then
@@ -110,14 +112,15 @@ zsh_steps() {
 
 ############## tmux specific steps ###############
 tmux_steps() {
-    cd ~/dotfiles
     # Install tmux dependencies
+    echo "Installing tmux"
     lib/install tmux
     
     # Create symlinks for tmux
     create_file_link .tmux .tmux.conf
     create_file_link tmux .tmux.conf.local
 
+    echo "Installing tmux clipboard support"
     case "$(uname)" in
     Darwin)
         lib/install reattach-to-user-namespace
@@ -131,6 +134,7 @@ tmux_steps() {
 
 ############### linux specific steps ###############
 install_fonts() {
+    echo "Installing $font from nerd-fonts"
     # Install nerd-fonts
     # clone
     cd /tmp
@@ -176,20 +180,31 @@ pre_install_steps() {
     case "$(uname)" in
     Darwin)
         # install Homebrew on macOS
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-        brew install python
+        if [ -x "$(command -v brew)" ]; then
+            echo "Homebrew already installed"
+        else
+            echo "Installing Homebrew"
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+        fi
+
+        echo "Installing Python toolchain"
+        lib/install python
         ;;
     Linux)
+        echo "Installing Python toolchain"
         sudo apt install python3 python3-pip -y
         # echo -n "Enter Python toolchain tarball (.tar.xz) link from https://www.python.org/downloads/: "
         # read pythonURL
 
         # #install python toolchain
         # cd /tmp
+            # echo "Downloading Python toolchain"
             # curl -LO --progress-bar "$pythonURL"
             # py_tarball=${pythonURL##*/} # get tarball name only
+            # echo "Extracting Python toolchain"
             # tar xf "$py_tarball"
             # cd "${py_tarball%.*.*}" # get folder name only
+                # echo "Installing Python toolchain"
                 # ./configure --enable-optimizations
                 # sudo make -j2
                 # sudo make install
@@ -199,11 +214,14 @@ pre_install_steps() {
     esac
 
     # rust toolchain
+    echo "Installing Rust toolchain"
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     
     # golang toolchain
     cd /tmp
+        echo "Downloading Go toolchain"
         curl -LO --progress-bar "$golangURL"
+        echo "Installing Go toolchain"
         sudo tar -C /usr/local -xzf "${golangURL##*/}" # get name of tarball only
     cd -
     
@@ -213,27 +231,38 @@ pre_install_steps() {
     # tools on linux
     if [[ "$(uname)" == "Linux" ]]; then
         if [[ ("$(lsb_release -si)" == "elementary") || ("$(lsb_release -si)" == "Ubuntu") ]]; then
-            sudo apt install -y build-essential software-properties-common clang clang-tools-8 clang-tidy clang-format
+            echo "Installing Linux tools"
+            lib/install build-essential
+            lib/install software-properties-common
+            lib/install clang
+            lib/install clang-tools-8
+            lib/install clang-tidy
+            lib/install clang-format
+            echo "Updating clangd alternatives"
             sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-8 100
         fi
 
         # elementary OS steps
         if [[ "$(lsb_release -si)" == "elementary" ]]; then
-            sudo add-apt-repository ppa:philip.scott/elementary-tweaks
-            sudo apt install elementary-tweaks -y
+            echo "Adding elementary-tweaks ppa"
+            sudo add-apt-repository ppa:philip.scott/elementary-tweaks -y
+            lib/install elementary-tweaks
         fi
     fi
 
     # C/C++ toolchain
+    echo "Installing C/C++ toolchain"
     lib/install llvm
     lib/install cmake
     lib/install uncrustify
 
     # node/javascript/typescript toolchain
+    echo "Installing Node/JavaScript/TypeScript toolchain"
     lib/install npm
     sudo npm install -g typescript
 
     # generic utilities
+    echo "Install cURL utility"
     lib/install curl
 }
 
