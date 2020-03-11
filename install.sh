@@ -152,7 +152,7 @@ post_install_steps() {
     git config --global user.name "$gitusername"
     git config --global user.email "$gituseremail"
 
-    if [[ "$(uname)" -eq "Darwin" ]]; then
+    if [[ "$(uname)" == "Darwin" ]]; then
         # make clang tools available to cli
         ln -s "$(brew --prefix llvm)/bin/clang-format" "/usr/local/bin/clang-format"
         ln -s "$(brew --prefix llvm)/bin/clang-tidy" "/usr/local/bin/clang-tidy"
@@ -199,14 +199,14 @@ pre_install_steps() {
     cd -
 
     # tools on linux
-    if [[ "$(uname)" -eq "Linux" ]]; then
-        if [[ ("$(lsb_release -si)" -eq "elementary") || ("$(lsb_release -si)" -eq "Ubuntu") ]]; then
+    if [[ "$(uname)" == "Linux" ]]; then
+        if [[ ("$(lsb_release -si)" == "elementary") || ("$(lsb_release -si)" == "Ubuntu") ]]; then
             sudo apt install -y build-essential software-properties-common clang clang-tools-8 clang-tidy clang-format
             sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-8 100
         fi
 
         # elementary OS steps
-        if [[ "$(lsb_release -si)" -eq "elementary" ]]; then
+        if [[ "$(lsb_release -si)" == "elementary" ]]; then
             sudo add-apt-repository ppa:philip.scott/elementary-tweaks
             sudo apt install elementary-tweaks -y
         fi
