@@ -168,11 +168,10 @@ pre_install_steps() {
     Darwin)
         # install Homebrew on macOS
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-        brew install python zlib
+        brew install python
         ;;
     Linux)
         sudo apt install python3 python3-pip -y
-        sudo -H pip3 install zlib
         # echo -n "Enter Python toolchain tarball (.tar.xz) link from https://www.python.org/downloads/: "
         # read pythonURL
 
@@ -189,6 +188,8 @@ pre_install_steps() {
         # cd ~/dotfiles
         ;;
     esac
+
+    sudo -H pip3 install zlib
 
     # rust toolchain
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
