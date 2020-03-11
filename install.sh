@@ -125,7 +125,7 @@ install_fonts() {
     # Install nerd-fonts
     # clone
     cd /tmp
-        git clone https://github.com/ryanoasis/nerd-fonts.git
+        git clone https://github.com/ryanoasis/nerd-fonts.git --depth=1
         # install
         cd nerd-fonts
             ./install.sh Inconsolata
