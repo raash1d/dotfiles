@@ -178,7 +178,7 @@ pre_install_steps() {
         cd /tmp
             curl -LO --progress-bar "$pythonURL"
             py_tarball=${pythonURL##*/} # get tarball name only
-            tar xf py_tarball
+            tar xf "$py_tarball"
             cd "${py_tarball%.*.*}" # get folder name only
                 ./configure
                 sudo make -j2
