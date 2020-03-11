@@ -1,5 +1,5 @@
-source $HOME/dotfiles/vim/vim_keybindings.vim
-source $HOME/dotfiles/vim/vim_plugins.vim
+source ~/.vim/vim_keybindings.vim
+source ~/.vim/vim_plugins.vim
 
 " Appearance {
     set wrap " turn on line wrapping
@@ -280,7 +280,11 @@ vnoremap . :normal .<cr>
 set clipboard=unnamed
 
 " YouCompleteMe Configuration
-let g:ycm_global_ycm_extra_conf = '~/dotfiles/vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" Let clangd fully control code completion
+let g:ycm_clangd_uses_ycmd_caching = 0
+" Use installed clangd, not YCM-bundled clangd which doesn't get updates.
+let g:ycm_clangd_binary_path = exepath("clangd")
 

@@ -1,0 +1,10 @@
+[diff]
+	tool = meld
+[merge]
+	tool = meld
+[difftool]
+	prompt = false
+[mergetool]
+	prompt = false
+[color]
+	ui = auto

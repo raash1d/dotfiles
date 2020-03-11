@@ -10,3 +10,6 @@
 [submodule "i3/wallpapers"]
 	path = i3/wallpapers
 	url = https://github.com/elementary/wallpapers.git
+[submodule ".tmux"]
+	path = .tmux
+	url = https://github.com/gpakosz/.tmux.git

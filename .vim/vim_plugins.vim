@@ -25,7 +25,7 @@ Plug 'ervandew/supertab'
 Plug 'mhinz/vim-signify'
 
 " YouCompleteMe
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer', 'for': ['c', 'cpp', 'python', 'python3'] }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --clangd-completer --go-completer --ts-completer --rust-completer', 'for': ['c', 'cpp', 'python', 'python3', 'go', 'rust', 'js', 'ts'] }
 
 " Vim Surround
 Plug 'tpope/vim-surround', { 'for': ['cpp', 'python', 'python3'] }
@@ -84,6 +84,13 @@ Plug 'Yggdroot/indentLine', { 'for': ['cpp', 'python', 'python3', 'js', 'html', 
     Plug 'othree/html5.vim', { 'for': ['js', 'css', 'html'] }
     Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['js', 'css', 'html'] }
     Plug 'ternjs/tern_for_vim', { 'for': ['js', 'css', 'html'] }
+" }
+
+" TypeScript Plugins
+" {
+    " REQUIRED: Add a syntax file. YATS is the best
+    Plug 'HerringtonDarkholme/yats.vim'
+    Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 " }
 call plug#end()
 

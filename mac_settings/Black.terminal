@@ -84,10 +84,10 @@
 	<data>
 	YnBsaXN0MDDUAQIDBAUGGBlYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
 	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU2l6ZVhOU2ZGbGFnc1ZOU05hbWVWJGNs
-	YXNzI0AmAAAAAAAAEBCAAoADXxAcUm9ib3RvTW9ub0ZvclBvd2VybGluZS1MaWdodNIT
-	FBUWWiRjbGFzc25hbWVYJGNsYXNzZXNWTlNGb250ohUXWE5TT2JqZWN0XxAPTlNLZXll
-	ZEFyY2hpdmVy0RobVHJvb3SAAQgRGiMtMjc8QktSW2JpcnR2eJecp7C3usPV2N0AAAAA
-	AAABAQAAAAAAAAAcAAAAAAAAAAAAAAAAAAAA3w==
+	YXNzI0AsAAAAAAAAEBCAAoADXxAhRnVyYUNvZGVOZXJkRm9udENvbXBsZXRlTS1SZWd1
+	bGFy0hMUFRZaJGNsYXNzbmFtZVgkY2xhc3Nlc1ZOU0ZvbnSiFRdYTlNPYmplY3RfEA9O
+	U0tleWVkQXJjaGl2ZXLRGhtUcm9vdIABCBEaIy0yNzxCS1JbYmlydHZ4nKGstby/yNrd
+	4gAAAAAAAAEBAAAAAAAAABwAAAAAAAAAAAAAAAAAAADk
 	</data>
 	<key>FontAntialias</key>
 	<true/>
@@ -96,7 +96,7 @@
 	<key>FontWidthSpacing</key>
 	<real>1.004032258064516</real>
 	<key>ProfileCurrentVersion</key>
-	<real>2.0499999999999998</real>
+	<real>2.0600000000000001</real>
 	<key>TextBoldColor</key>
 	<data>
 	YnBsaXN0MDDUAQIDBAUGKyxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
@@ -247,10 +247,14 @@
 	Og1DDVENVQ1cDWUNag13DXoNhw2MDZQNlw2pDawNsQAAAAAAAAIBAAAAAAAAAC8AAAAA
 	AAAAAAAAAAAAAA2z
 	</data>
+	<key>columnCount</key>
+	<integer>100</integer>
 	<key>name</key>
 	<string>Black</string>
+	<key>noWarnProcesses</key>
+	<array/>
 	<key>shellExitAction</key>
-	<integer>1</integer>
+	<integer>0</integer>
 	<key>type</key>
 	<string>Window Settings</string>
 </dict>

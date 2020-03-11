@@ -15,7 +15,7 @@ fi
 
 # Update settings by downloading from git
 if [[ $1 == '-u' ]]; then
-    cd $HOME
+    cd
     if [ -d .vim ]; then
         cd .vim
         git pull
@@ -39,12 +39,12 @@ sudo apt install meld\
     python3-dev
 
 # Make vim directory in home folder
-#git clone https://github.com/raash1d/vim-settings $HOME/.vim
-if ! [ -f $HOME/.vimrc ]; then
-    ln -s $HOME/.vim/vimrc $HOME/.vimrc
+#git clone https://github.com/raash1d/vim-settings ~/.vim
+if ! [ -f ~/.vimrc ]; then
+    ln -s ~/.vim/vimrc ~/.vimrc
 fi
-if ! [ -f $HOME/.gitconfig ]; then
-    ln -s $HOME/.vim/gitconfig $HOME/.gitconfig
+if ! [ -f ~/.gitconfig ]; then
+    ln -s ~/.vim/gitconfig ~/.gitconfig
 fi
 vim +:PlugClean +:PlugInstall
-$HOME/.vim/plugged/YouCompleteMe/install.sh --clang-completer
+~/.vim/plugged/YouCompleteMe/install.sh --clang-completer
