@@ -189,8 +189,6 @@ pre_install_steps() {
         ;;
     esac
 
-    sudo -H pip3 install zlib
-
     # rust toolchain
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     
