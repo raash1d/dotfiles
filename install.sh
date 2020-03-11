@@ -180,7 +180,7 @@ pre_install_steps() {
             py_tarball=${pythonURL##*/} # get tarball name only
             tar xf "$py_tarball"
             cd "${py_tarball%.*.*}" # get folder name only
-                ./configure
+                ./configure --enable-optimizations
                 sudo make -j2
                 sudo make install
             cd ..
