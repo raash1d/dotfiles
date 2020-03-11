@@ -4,7 +4,7 @@ echo "Installing $1..."
 # Check if installed before installing
 if [ -x "$(command -v $1)" ]; then
     echo "$1 installed"
-    return
+    exit
 fi
 
 case "$(uname)" in
