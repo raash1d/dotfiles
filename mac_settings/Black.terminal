@@ -251,8 +251,10 @@
 	<integer>100</integer>
 	<key>name</key>
 	<string>Black</string>
+	<key>noWarnProcesses</key>
+	<array/>
 	<key>shellExitAction</key>
-	<integer>1</integer>
+	<integer>0</integer>
 	<key>type</key>
 	<string>Window Settings</string>
 </dict>
