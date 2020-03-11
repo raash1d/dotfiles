@@ -171,20 +171,21 @@ pre_install_steps() {
         brew install python
         ;;
     Linux)
-        echo -n "Enter Python toolchain tarball (.tar.xz) link from https://www.python.org/downloads/: "
-        read pythonURL
+        sudo apt install python3 -y
+        # echo -n "Enter Python toolchain tarball (.tar.xz) link from https://www.python.org/downloads/: "
+        # read pythonURL
 
-        #install python toolchain
-        cd /tmp
-            curl -LO --progress-bar "$pythonURL"
-            py_tarball=${pythonURL##*/} # get tarball name only
-            tar xf "$py_tarball"
-            cd "${py_tarball%.*.*}" # get folder name only
-                ./configure --enable-optimizations
-                sudo make -j2
-                sudo make install
-            cd ..
-        cd ~/dotfiles
+        # #install python toolchain
+        # cd /tmp
+            # curl -LO --progress-bar "$pythonURL"
+            # py_tarball=${pythonURL##*/} # get tarball name only
+            # tar xf "$py_tarball"
+            # cd "${py_tarball%.*.*}" # get folder name only
+                # ./configure --enable-optimizations
+                # sudo make -j2
+                # sudo make install
+            # cd ..
+        # cd ~/dotfiles
         ;;
     esac
 
