@@ -24,6 +24,7 @@ case "$(uname)" in
             echo "This linux distro is not supported yet."
             ;;
         esac
+        ;;
     *)
         echo "Your OS is not supported yet."
         ;;
