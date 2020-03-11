@@ -157,9 +157,9 @@ install_fonts() {
 
 post_install_steps() {
     echo "Please configure your git:"
-    echo -n "Enter your name: "
+    echo "Enter your name: "
     read gitusername
-    echo -n "Enter your email: "
+    echo "Enter your email: "
     read gituseremail
 
     git config --global user.name "$gitusername"
@@ -167,14 +167,14 @@ post_install_steps() {
 
     if [[ "$(uname)" == "Darwin" ]]; then
         # make clang tools available to cli
-        ln -s "$(brew --prefix llvm)/bin/clang-format" "/usr/local/bin/clang-format"
-        ln -s "$(brew --prefix llvm)/bin/clang-tidy" "/usr/local/bin/clang-tidy"
+        ln -s -f "$(brew --prefix llvm)/bin/clang-format" "/usr/local/bin/clang-format"
+        ln -s -f "$(brew --prefix llvm)/bin/clang-tidy" "/usr/local/bin/clang-tidy"
     fi
 }
 
 pre_install_steps() {
     echo "Answer the following before the automated installation starts."
-    echo -n "Enter golang toolchain tarball (.tar.gz) link from https://golang.org/dl: "
+    echo "Enter golang toolchain tarball (.tar.gz) link from https://golang.org/dl: "
     read golangURL
 
     case "$(uname)" in
@@ -193,7 +193,7 @@ pre_install_steps() {
     Linux)
         echo "Installing Python toolchain"
         sudo apt install python3 python3-pip -y
-        # echo -n "Enter Python toolchain tarball (.tar.xz) link from https://www.python.org/downloads/: "
+        # echo "Enter Python toolchain tarball (.tar.xz) link from https://www.python.org/downloads/: "
         # read pythonURL
 
         # #install python toolchain
@@ -214,19 +214,28 @@ pre_install_steps() {
     esac
 
     # rust toolchain
-    echo "Installing Rust toolchain"
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    if [ -x "$(command -v rustc)" ]; then
+        echo "Rust toolchain already installed"
+    else
+        echo "Installing Rust toolchain"
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    fi
     
     # golang toolchain
-    cd /tmp
-        echo "Downloading Go toolchain"
-        curl -LO --progress-bar "$golangURL"
-        echo "Installing Go toolchain"
-        sudo tar -C /usr/local -xzf "${golangURL##*/}" # get name of tarball only
-    cd -
+    if [ -x "$(command -v go)" ]; then
+        echo "Go toolchain already installed"
+    else
+        (
+            cd /tmp
+                echo "Downloading Go toolchain"
+                curl -LO --progress-bar "$golangURL"
+                echo "Installing Go toolchain"
+                sudo tar -C /usr/local -xzf "${golangURL##*/}" # get name of tarball only
+        )
     
-    # Temporarily export go path in PATH
-    export PATH="$PATH:/usr/local/go/bin"
+        # Temporarily export go path in PATH
+        export PATH="$PATH:/usr/local/go/bin"
+    fi
 
     # tools on linux
     if [[ "$(uname)" == "Linux" ]]; then
@@ -268,9 +277,12 @@ pre_install_steps() {
 
 ############### steps to perform manually ###############
 manual_steps() {
-    echo "To complete installation, follow below steps"
-    echo "1. Change your font to $font for your terminal"
-    echo "3. Reboot your system to finish installation of meld"
+    step="
+        To complete installation, follow below steps
+        1. Change your font to $font for your terminal
+        2. Reboot your system to finish installation of meld
+        "
+    echo "$step"
 }
 ##################################################
 
@@ -282,11 +294,8 @@ main() {
         ;;
     Linux)
         case "$(lsb_release -si)" in
-        Ubuntu)
-            echo "You're on Ubuntu, IT'S SUPPORTED! :)"
-            ;;
-        elementary)
-            echo "You're on elementaryOS, IT'S SUPPORTED! :)"
+        Ubuntu | elementary)
+            echo "You're on an Ubuntu-based distro, IT'S SUPPORTED! :)"
             ;;
         *)
             echo "Unfortunately your linux distro is not supported yet. :("
@@ -301,14 +310,11 @@ main() {
     esac
 
     pre_install_steps
-
     git_steps
     vim_steps
     zsh_steps
     tmux_steps
     install_fonts
-
-    cd ~/dotfiles
     post_install_steps
     manual_steps
 }
