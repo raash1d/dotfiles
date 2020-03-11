@@ -1,3 +1,4 @@
 .vim/plugged/
+.vim/autoload/
 *.sw[klmnop]
 .DS_Store
