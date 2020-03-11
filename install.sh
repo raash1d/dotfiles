@@ -3,6 +3,9 @@
 # Installation script for all configuration files
 # Author: Raashid Ansari
 # Date: Feb 6, 2018
+# Update: Mar 11, 2020
+
+font="FiraCode"
 
 ################ Helper functions ################
 # usage: create_file_link <folder> <file>
@@ -134,7 +137,7 @@ install_fonts() {
         git clone https://github.com/ryanoasis/nerd-fonts.git --depth=1
         # install
         cd nerd-fonts
-            ./install.sh FiraCode
+            ./install.sh "$font"
         # clean-up a bit
         cd ..
         rm -rf nerd-fonts
@@ -237,7 +240,7 @@ pre_install_steps() {
 ############### steps to perform manually ###############
 manual_steps() {
     echo "To complete installation, follow below steps"
-    echo "1. Change your font to Inconsolata for your terminal"
+    echo "1. Change your font to $font for your terminal"
     echo "3. Reboot your system to finish installation of meld"
 }
 ##################################################
