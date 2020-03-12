@@ -5,7 +5,7 @@
 # Date: Feb 6, 2018
 # Update: Mar 11, 2020
 
-font="FiraCode"
+font="RobotoMono"
 
 ################ Helper functions ################
 # usage: create_file_link <folder> <file>
@@ -137,15 +137,16 @@ install_fonts() {
     echo "Installing $font from nerd-fonts"
     # Install nerd-fonts
     # clone
-    cd /tmp
-        git clone https://github.com/ryanoasis/nerd-fonts.git --depth=1
-        # install
-        cd nerd-fonts
-            ./install.sh "$font"
-        # clean-up a bit
-        cd ..
-        rm -rf nerd-fonts
-    cd
+    (
+        cd /tmp
+            if [ ! -d nerd-fonts ]; then
+                git clone https://github.com/ryanoasis/nerd-fonts.git --depth=1
+            fi
+
+            # install
+            cd nerd-fonts
+                ./install.sh "$font"
+    )
 }
 ##################################################
 
