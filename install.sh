@@ -221,7 +221,7 @@ pre_install_steps() {
         echo "Installing Rust toolchain"
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     fi
-    
+
     # golang toolchain
     if [ -x "$(command -v go)" ]; then
         echo "Go toolchain already installed"
@@ -233,7 +233,7 @@ pre_install_steps() {
                 echo "Installing Go toolchain"
                 sudo tar -C /usr/local -xzf "${golangURL##*/}" # get name of tarball only
         )
-    
+
         # Temporarily export go path in PATH
         export PATH="$PATH:/usr/local/go/bin"
     fi
@@ -268,6 +268,9 @@ pre_install_steps() {
 
     # node/javascript/typescript toolchain
     echo "Installing Node/JavaScript/TypeScript toolchain"
+    lib/install libssl1.0-dev
+    lib/install nodejs-dev
+    lib/install node-gyp
     lib/install npm
     sudo npm install -g typescript
 
