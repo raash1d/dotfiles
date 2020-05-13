@@ -6,6 +6,7 @@
 # Update: Mar 11, 2020
 
 font="RobotoMono"
+font_path="https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/RobotoMono/Regular/complete/Roboto%20Mono%20Nerd%20Font%20Complete.ttf"
 
 ################ Helper functions ################
 # usage: create_file_link <folder> <file>
@@ -115,7 +116,7 @@ tmux_steps() {
     # Install tmux dependencies
     echo "Installing tmux"
     lib/install tmux
-    
+
     # Create symlinks for tmux
     create_file_link .tmux .tmux.conf
     create_file_link tmux .tmux.conf.local
@@ -135,18 +136,35 @@ tmux_steps() {
 ############### linux specific steps ###############
 install_fonts() {
     echo "Installing $font from nerd-fonts"
-    # Install nerd-fonts
-    # clone
+    font_name="Roboto Mono Nerd Font Complete.ttf"
     (
-        cd /tmp
-            if [ ! -d nerd-fonts ]; then
-                git clone https://github.com/ryanoasis/nerd-fonts.git --depth=1
-            fi
+        #cd /tmp
+            # clone nerd-fonts repo
+            #if [ ! -d nerd-fonts ]; then
+                #git clone https://github.com/ryanoasis/nerd-fonts.git --depth=1
+            #fi
 
             # install
-            cd nerd-fonts
-                ./install.sh "$font"
+            #cd nerd-fonts
+                #./install.sh "$font"
     )
+
+    case "$(uname)" in
+    Darwin)
+        (
+            mkdir -p ~/.local/share/fonts
+            cd ~/.local/share/fonts
+            curl -fLo $font_name $font_path
+        )
+        ;;
+    Linux)
+        (
+            cd /Users/$(whoami)/Library/Fonts
+            curl -fLo $font_name $font_path
+        )
+        ;;
+    esac
+    fc-cache -vf
 }
 ##################################################
 
