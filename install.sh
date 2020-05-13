@@ -137,7 +137,7 @@ tmux_steps() {
 install_fonts() {
     echo "Installing $font from nerd-fonts"
     font_name="Roboto Mono Nerd Font Complete.ttf"
-    (
+    #(
         #cd /tmp
             # clone nerd-fonts repo
             #if [ ! -d nerd-fonts ]; then
@@ -147,7 +147,7 @@ install_fonts() {
             # install
             #cd nerd-fonts
                 #./install.sh "$font"
-    )
+    #)
 
     case "$(uname)" in
     Darwin)
