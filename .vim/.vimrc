@@ -207,9 +207,9 @@ set scrolloff=5
 
 " Javascript {
   au BufNewFile,BufRead *.js,*.html,*.css
-        \ set tabstop=2 |
-        \ set softtabstop=2 |
-        \ set shiftwidth=2
+        \ set tabstop=4 |
+        \ set softtabstop=4 |
+        \ set shiftwidth=4
 " }
 
 " Trigger configuration. Do not use <tab> if you use
@@ -225,9 +225,9 @@ set history=100
 " Smart tabbing and indentation
 filetype indent on
 set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
-set tabstop=2 " the visible width of tabs
-set shiftwidth=2 " number of spaces to use for indent and unindent
-set softtabstop=2 " edit as if the tabs are 2 characters wide
+set tabstop=4 " the visible width of tabs
+set shiftwidth=4 " number of spaces to use for indent and unindent
+set softtabstop=4 " edit as if the tabs are 4 characters wide
 set expandtab
 set smartindent
 set autoindent
