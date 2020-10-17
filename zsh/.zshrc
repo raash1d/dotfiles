@@ -1,6 +1,7 @@
 source $HOME/dotfiles/zsh/paths.zsh
+eval "$(starship init zsh)"
 
-ZSH_THEME="raash1d"
+#ZSH_THEME="raash1d"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.

@@ -2,31 +2,31 @@ echo "Installing $1..."
 
 # https://github.com/Parth/dotfiles/blob/master/deploy
 # Check if installed before installing
-if [ -x "$(command -v $1)" ]; then
+if [ -x "$(command -v "$1")" ]; then
     echo "$1 installed"
     exit
 fi
 
 case "$(uname)" in
-    Darwin)
-        if [ -x "$(command -v brew)" ]; then
-            brew install $1
-        else
-            echo "No package manager installed on your Mac. Only Homebrew is supported on macOS."
-        fi
-        ;;
-    Linux)
-        case $(lsb_release -si) in
-        Ubuntu|elementary)
-            sudo apt install $1 -y
-            ;;
-        *)
-            echo "This linux distro is not supported yet."
-            ;;
-        esac
+Darwin)
+    if [ -x "$(command -v brew)" ]; then
+        brew install "$1"
+    else
+        echo "No package manager installed on your Mac. Only Homebrew is supported on macOS."
+    fi
+    ;;
+Linux)
+    case $(lsb_release -si) in
+    Ubuntu | elementary)
+        $SUDO apt install "$1" -y
         ;;
     *)
-        echo "Your OS is not supported yet."
+        echo "This linux distro is not supported yet."
         ;;
+    esac
+    ;;
+*)
+    echo "Your OS is not supported yet."
+    ;;
 esac
 echo "done."
