@@ -52,10 +52,8 @@ git_steps() {
 
     # Create git symlinks
     echo "Creating git symlinks"
-    (
-        cd
-        cp ~/dotfiles/git/.gitconfig .
-    )
+    cp "$HOME/dotfiles/git/.gitconfig" "$HOME/"
+
     echo "Cloning Git submodules"
     git submodule update --init --recursive
 }
@@ -102,16 +100,8 @@ zsh_steps() {
 
     # clean up previous zsh configs
     echo "Cleaning up previous zsh config files"
-    (
-        cd
-        if [ -f .zshrc ]; then
-            rm .zshrc
-        fi
-
-        if [ -f .zshrc.pre-oh-my-zsh ]; then
-            rm .zshrc.pre-oh-my-zsh
-        fi
-    )
+    [ -f ~/.zshrc ] && rm .zshrc
+    [ -f ~/.zshrc.pre-oh-my-zsh ] && rm ~/.zshrc.pre-oh-my-zsh
 
     create_file_link zsh .zshrc
 }
@@ -157,17 +147,11 @@ install_fonts() {
 
     case "$(uname)" in
     Linux)
-        (
-            mkdir -p ~/.local/share/fonts
-            cd ~/.local/share/fonts
-            curl -fLo "$font_name" "$font_path"
-        )
+        mkdir -p ~/.local/share/fonts
+        curl -fLo "$HOME/.local/share/fonts/$font_name" "$font_path"
         ;;
     Darwin)
-        (
-            cd /Users/$(whoami)/Library/Fonts
-            curl -fLo "$font_name" "$font_path"
-        )
+        curl -fLo "/Users/$(whoami)/Library/Fonts/$font_name" "$font_path"
         ;;
     esac
     fc-cache -vf
@@ -183,9 +167,9 @@ install_fonts() {
 post_install_steps() {
     echo "Please configure your git:"
     echo "Enter your name: "
-    read gitusername
+    read -r gitusername
     echo "Enter your email: "
-    read gituseremail
+    read -r gituseremail
 
     git config --global user.name "$gitusername"
     git config --global user.email "$gituseremail"
@@ -256,7 +240,7 @@ pre_install_steps() {
         echo "Go toolchain already installed"
     else
         (
-            cd /tmp
+            cd /tmp || return
             echo "Downloading Go toolchain"
             curl -LO --progress-bar "$golangURL"
             echo "Installing Go toolchain"
@@ -317,7 +301,7 @@ pre_install_steps() {
                 echo "shfmt already installed"
             else
                 (
-                    cd /tmp
+                    cd /tmp || return
                     echo "Downloading shfmt utility"
                     curl -L --progress-bar -o shfmt "$shfmtURL"
                     chmod +x shfmt
