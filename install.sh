@@ -329,7 +329,9 @@ pre_install_steps() {
     fi
 
     # install rust-based utilities
-    cargo install starship bat exa fd procs sd dust ripgrep tokei hyperfine ytop bottom tealdeer bandwhich zoxide skim alacritty
+    cargo install starship bat exa fd-find procs sd du-dust ripgrep tokei hyperfine ytop bottom tealdeer bandwhich zoxide skim alacritty
+    echo "Loading tldr cache"
+    tldr --update
     ln -sf "$HOME/dotfiles/alacritty" "$HOME/.config/"
 
     #install fzf (fuzzy file finder)
