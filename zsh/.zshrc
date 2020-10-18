@@ -1,5 +1,6 @@
 source $HOME/dotfiles/zsh/paths.zsh
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 
 #ZSH_THEME="raash1d"
 
@@ -26,10 +27,10 @@ ZSH_CUSTOM=$HOME/dotfiles/zsh/themes
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    git
-    vi-mode
-    sudo
-    tmux
+        git
+        vi-mode
+        sudo
+        tmux
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -41,9 +42,9 @@ source $DOTFILES/zsh/aliases.zsh
 source $DOTFILES/zsh/scripts.zsh
 
 # Run tmux if exists (https://github.com/Parth/dotfiles/blob/master/zsh/zshrc_manager.sh)
-if command -v tmux>/dev/null; then
+if command -v tmux >/dev/null; then
         [ -z $TMUX ] && exec tmux
-else 
+else
         echo "tmux not installed"
 fi
 
@@ -51,3 +52,5 @@ setopt extended_glob
 
 source $DOTFILES/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $DOTFILES/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

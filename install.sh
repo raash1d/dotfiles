@@ -331,6 +331,17 @@ pre_install_steps() {
     # install rust-based utilities
     cargo install starship bat exa fd procs sd dust ripgrep tokei hyperfine ytop bottom tealdeer bandwhich zoxide skim alacritty
     ln -sf "$HOME/dotfiles/alacritty" "$HOME/.config/"
+
+    #install fzf (fuzzy file finder)
+    if [ -x "$(command -v fzf)" ]; then
+        echo "fzf already installed"
+    else
+        (
+            cd /tmp
+            git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+            ~/.fzf/install
+        )
+    fi
 }
 
 docker_steps() {
