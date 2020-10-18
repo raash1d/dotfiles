@@ -338,11 +338,8 @@ pre_install_steps() {
     if [ -x "$(command -v fzf)" ]; then
         echo "fzf already installed"
     else
-        (
-            cd /tmp
-            git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-            ~/.fzf/install
-        )
+        git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+        ~/.fzf/install
     fi
 }
 
