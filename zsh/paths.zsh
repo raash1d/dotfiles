@@ -15,9 +15,4 @@ export ZSH="$HOME/.oh-my-zsh"
 export DOTFILES="$HOME/dotfiles"
 
 # source system specific paths, if exists
-if [ -e $HOME/.localrc ]; then
-    source $HOME/.localrc
-fi
-
-export SHARE="/mnt/hgfs/Public"
-
+[ -e $HOME/.localrc ] && source $HOME/.localrc
