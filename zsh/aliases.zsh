@@ -1,6 +1,4 @@
-if [ -f $DOTFILES/git/git_aliases ]; then
-    source $DOTFILES/git/git_aliases
-fi
+[ -f $DOTFILES/git/git_aliases ] && source $DOTFILES/git/git_aliases
 
 alias ipaddr='ip -c addr' # alias to list ip output in color
 
@@ -12,7 +10,7 @@ alias ls="list $@"
 
 # list files & folders after moving to new directory
 change_directory() {
-    z "$1"
+    [ "$#" -eq 0 ] && z "$HOME" || z "$1"
     ls
 }
 alias cd="change_directory"
