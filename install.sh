@@ -15,11 +15,15 @@ font="RobotoMono"
 font_path="https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/RobotoMono/Regular/complete/Roboto%20Mono%20Nerd%20Font%20Complete.ttf"
 
 ################ Helper functions ################
-# usage: create_file_link <folder> <file>
+# usage: create_file_link <folder> <file> [link-name]
 create_file_link() {
     echo -n "creating link for $2 ..."
     if ! [ -f "$HOME/$2" ]; then
-        ln -s -f "$HOME/dotfiles/$1/$2" "$HOME/$2"
+        if [ "$#" -eq 3 ]; then
+            ln -s -f "$HOME/dotfiles/$1/$2" "$HOME/$3"
+        elif [ "$#" -eq 2 ]; then
+            ln -s -f "$HOME/dotfiles/$1/$2" "$HOME/$2"
+        fi
     fi
     echo " done."
 }
@@ -115,15 +119,16 @@ tmux_steps() {
 
     # Create symlinks for tmux
     create_file_link .tmux .tmux.conf
-    create_file_link tmux .tmux.conf.local
 
-    echo "Installing tmux clipboard support"
+    echo "Installing tmux clipboard support and creating links to local tmux configs"
     case "$(uname)" in
     Darwin)
         lib/install reattach-to-user-namespace
+        create_file_link tmux .tmux.conf.local.macos .tmux.conf.local
         ;;
     Linux)
         lib/install xclip
+        create_file_link tmux .tmux.conf.local.linux .tmux.conf.local
         ;;
     esac
 }
@@ -186,8 +191,12 @@ pre_install_steps() {
     echo "Enter golang toolchain tarball (.tar.gz) link (https://golang.org/dl): "
     read -r golangURL
 
-    echo "Enter link to download shfmt (shellformat) util (https://github.com/mvdan/sh/releases):"
-    read -r shfmtURL
+    if [[ "$(uname)" == "Linux" ]]; then
+        if [[ ("$(lsb_release -si)" == "elementary") || ("$(lsb_release -si)" == "Ubuntu") ]]; then
+            echo "Enter link to download shfmt (shellformat) util (https://github.com/mvdan/sh/releases):"
+            read -r shfmtURL
+        fi
+    fi
 
     case "$(uname)" in
     Darwin)
@@ -361,8 +370,12 @@ manual_steps() {
     step="
         To complete installation, follow below steps
         1. Change your font to $font for your terminal
-        2. Reboot your system to finish installation of meld
-        "
+        2. Reboot your system to finish installation of meld"
+    if [[ "$(uname)" == "Darwin" ]]; then
+        step=$step"
+        3. After installing VSCode, run \"defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false\""
+    fi
+
     echo "$step"
 }
 ##################################################
