@@ -42,11 +42,11 @@ source $DOTFILES/zsh/aliases.zsh
 source $DOTFILES/zsh/scripts.zsh
 
 # Run tmux if exists (https://github.com/Parth/dotfiles/blob/master/zsh/zshrc_manager.sh)
-if command -v tmux >/dev/null; then
-        [ -z $TMUX ] && exec tmux
-else
-        echo "tmux not installed"
-fi
+#if command -v tmux >/dev/null; then
+        #[ -z $TMUX ] && exec tmux
+#else
+        #echo "tmux not installed"
+#fi
 
 setopt extended_glob
 
@@ -54,3 +54,7 @@ source $DOTFILES/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $DOTFILES/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+fpath+=~/.zfunc
