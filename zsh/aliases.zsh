@@ -10,7 +10,7 @@ alias ls="list $@"
 
 # list files & folders after moving to new directory
 change_directory() {
-    [ "$#" -eq 0 ] && z "$HOME" || z "$1"
+    [ "$#" -eq 0 ] && builtin cd "$HOME" || builtin cd "$1"
     ls
 }
 alias cd="change_directory"
