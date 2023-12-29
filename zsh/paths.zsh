@@ -13,6 +13,3 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH:$RUST_PATH:$GO_PATH"
 export ZSH="$HOME/.oh-my-zsh"
 
 export DOTFILES="$HOME/dotfiles"
-
-# source system specific paths, if exists
-[ -e $HOME/.localrc ] && source $HOME/.localrc
