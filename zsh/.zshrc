@@ -1,3 +1,10 @@
+# Run tmux if exists (https://github.com/Parth/dotfiles/blob/master/zsh/zshrc_manager.sh)
+if command -v tmux >/dev/null 2>&1; then
+  [ -z $TMUX ] && exec tmux
+else
+  echo "tmux not installed"
+fi
+
 source $HOME/dotfiles/zsh/paths.zsh
 
 # If you come from bash you might have to change your $PATH.
@@ -115,13 +122,6 @@ source $DOTFILES/zsh/aliases.zsh
 
 # For custom scripts
 source $DOTFILES/zsh/scripts.zsh
-
-# Run tmux if exists (https://github.com/Parth/dotfiles/blob/master/zsh/zshrc_manager.sh)
-#if command -v tmux >/dev/null; then
-        #[ -z $TMUX ] && exec tmux
-#else
-        #echo "tmux not installed"
-#fi
 
 # source system specific paths, if exists
 [ -e $HOME/.localrc ] && source $HOME/.localrc
