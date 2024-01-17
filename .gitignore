@@ -3,3 +3,4 @@
 .DS_Store
 .vim/autoload/plug.vim
 git/gitconfig
+nvim/lazy-lock.json
