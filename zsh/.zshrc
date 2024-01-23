@@ -120,6 +120,9 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 source $DOTFILES/zsh/aliases.zsh
 
+# get all the exports
+source $DOTFILES/zsh/exports.zsh
+
 # For custom scripts
 source $DOTFILES/zsh/scripts.zsh
 
