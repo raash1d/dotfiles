@@ -265,13 +265,13 @@ pre_install_steps() {
         if [[ ("$(lsb_release -si)" == "elementary") || ("$(lsb_release -si)" == "Ubuntu") ]]; then
             echo "Installing Linux tools"
             lib/install build-essential
-            lib/install software-properties-common
-            lib/install clang
-            lib/install clang-tools-8
-            lib/install clang-tidy
-            lib/install clang-format
-            echo "Updating clangd alternatives"
-            $SUDO update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-8 100
+            # lib/install software-properties-common
+            # lib/install clang
+            # lib/install clang-tools-8
+            # lib/install clang-tidy
+            # lib/install clang-format
+            # echo "Updating clangd alternatives"
+            # $SUDO update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-8 100
         fi
 
         # elementary OS steps
@@ -283,10 +283,10 @@ pre_install_steps() {
     fi
 
     # C/C++ toolchain
-    echo "Installing C/C++ toolchain"
-    lib/install llvm
-    lib/install cmake
-    lib/install uncrustify
+    # echo "Installing C/C++ toolchain"
+    # lib/install llvm
+    # lib/install cmake
+    # lib/install uncrustify
 
     # node/javascript/typescript toolchain
     echo "Installing Node/JavaScript/TypeScript toolchain"
