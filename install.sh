@@ -407,7 +407,7 @@ git_steps
 # vim_steps
 zsh_steps
 tmux_steps
-docker_steps
+# docker_steps
 install_fonts
 post_install_steps
 manual_steps
