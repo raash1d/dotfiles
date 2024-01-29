@@ -371,8 +371,7 @@ docker_steps() {
 manual_steps() {
     step="
         To complete installation, follow below steps
-        1. Change your font to $font for your terminal
-        2. Reboot your system to finish installation of meld"
+        1. Change your font to $font for your terminal"
     if [[ "$(uname)" == "Darwin" ]]; then
         step=$step"
         3. After installing VSCode, run \"defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false\""
