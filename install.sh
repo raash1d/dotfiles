@@ -322,7 +322,9 @@ pre_install_steps() {
     fi
 
     # install rust-based utilities
-    cargo install starship bat exa fd-find procs sd du-dust ripgrep tokei hyperfine bottom tealdeer bandwhich zoxide skim alacritty
+    # dependency for alacritty
+    lib/install libfontconfig1-dev
+    cargo install starship bat eza fd-find ripgrep tealdeer alacritty
     echo "Loading tldr cache"
     tldr --update
     ln -sf "$HOME/dotfiles/alacritty" "$HOME/.config/"
