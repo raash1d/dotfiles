@@ -187,9 +187,9 @@ post_install_steps() {
 }
 
 pre_install_steps() {
-    echo "Answer the following before the automated installation starts."
-    echo "Enter golang toolchain tarball (.tar.gz) link (https://golang.org/dl): "
-    read -r golangURL
+    # echo "Answer the following before the automated installation starts."
+    # echo "Enter golang toolchain tarball (.tar.gz) link (https://golang.org/dl): "
+    # read -r golangURL
 
     if [[ "$(uname)" == "Linux" ]]; then
         if [[ ("$(lsb_release -si)" == "elementary") || ("$(lsb_release -si)" == "Ubuntu") ]]; then
