@@ -1,10 +1,15 @@
 [diff]
-	tool = meld
+  tool = vimdiff
 [merge]
-	tool = meld
+  tool = vimdiff
 [difftool]
-	prompt = false
+  prompt = false
 [mergetool]
-	prompt = false
+  prompt = false
 [color]
-	ui = auto
+  ui = auto
+[credential]
+	helper = /usr/local/bin/git-credential-manager
+	credentialStore = gpg
+[credential "https://dev.azure.com"]
+	useHttpPath = true
