@@ -58,8 +58,8 @@ git_steps() {
     echo "Creating git symlinks"
     cp "$HOME/dotfiles/git/.gitconfig" "$HOME/"
 
-    echo "Cloning Git submodules"
-    git submodule update --init --recursive
+    # echo "Cloning Git submodules"
+    # git submodule update --init --recursive
 }
 ##################################################
 
