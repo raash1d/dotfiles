@@ -289,12 +289,12 @@ pre_install_steps() {
     # lib/install uncrustify
 
     # node/javascript/typescript toolchain
-    echo "Installing Node/JavaScript/TypeScript toolchain"
-    lib/install libssl1.0-dev
-    lib/install nodejs-dev
-    lib/install node-gyp
-    lib/install npm
-    $SUDO npm install -g typescript
+    # echo "Installing Node/JavaScript/TypeScript toolchain"
+    # lib/install libssl1.0-dev
+    # lib/install nodejs-dev
+    # lib/install node-gyp
+    # lib/install npm
+    # $SUDO npm install -g typescript
 
     # generic utilities
     echo "Install cURL utility"
