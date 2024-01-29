@@ -64,32 +64,32 @@ git_steps() {
 ##################################################
 
 ############### vim specific steps ###############
-vim_steps() {
-    # Remove vim-tiny
-    lib/remove vim-tiny
-
-    echo "Installing Vim"
-    case "$(uname)" in
-    Darwin)
-        brew install macvim
-        ;;
-    Linux)
-        lib/install vim-gnome
-        lib/install vim-gtk3
-        ;;
-    esac
-
-    # Create symlinks for vim
-    create_file_link .vim .vimrc
-    create_folder_link .vim
-
-    echo "Installing plugin manager Vim-Plug"
-    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-    # Install vim plugins
-    vim +:PlugClean +:PlugInstall +qa
-}
+# vim_steps() {
+#     # Remove vim-tiny
+#     lib/remove vim-tiny
+#
+#     echo "Installing Vim"
+#     case "$(uname)" in
+#     Darwin)
+#         brew install macvim
+#         ;;
+#     Linux)
+#         lib/install vim-gnome
+#         lib/install vim-gtk3
+#         ;;
+#     esac
+#
+#     # Create symlinks for vim
+#     create_file_link .vim .vimrc
+#     create_folder_link .vim
+#
+#     echo "Installing plugin manager Vim-Plug"
+#     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+#         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+#
+#     # Install vim plugins
+#     vim +:PlugClean +:PlugInstall +qa
+# }
 ##################################################
 
 ############### zsh specific steps ###############
@@ -404,7 +404,7 @@ esac
 
 pre_install_steps
 git_steps
-vim_steps
+# vim_steps
 zsh_steps
 tmux_steps
 docker_steps
