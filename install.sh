@@ -40,16 +40,16 @@ create_folder_link() {
 git_steps() {
     # Check/Install git dependencies
 
-    echo "Installing Meld diff viewer"
-    case "$(uname)" in
-    Darwin)
-        brew tap homebrew/cask
-        brew cask install meld
-        ;;
-    Linux)
-        lib/install meld
-        ;;
-    esac
+    # echo "Installing Meld diff viewer"
+    # case "$(uname)" in
+    # Darwin)
+    # 	brew tap homebrew/cask
+    # 	brew cask install meld
+    # 	;;
+    # Linux)
+    # 	# lib/install meld
+    # 	;;
+    # esac
 
     echo "Installing Git"
     lib/install git
