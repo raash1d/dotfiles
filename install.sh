@@ -118,17 +118,15 @@ tmux_steps() {
     lib/install tmux
 
     # Create symlinks for tmux
-    create_file_link .tmux .tmux.conf
+    create_file_link tmux tmux.conf .tmux.conf
 
     echo "Installing tmux clipboard support and creating links to local tmux configs"
     case "$(uname)" in
     Darwin)
         lib/install reattach-to-user-namespace
-        create_file_link tmux .tmux.conf.local.macos .tmux.conf.local
         ;;
     Linux)
-        lib/install xclip
-        create_file_link tmux .tmux.conf.local.linux .tmux.conf.local
+        lib/install xsel
         ;;
     esac
 }
