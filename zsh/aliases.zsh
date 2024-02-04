@@ -3,9 +3,13 @@
 # alias to list ip output in color
 alias ip="ip -c $@"
 
-# use exa instead of ls
-list() {
-    exa --icons --all "$@"
+# use eza instead of ls, if eza is available
+list () {
+  if [ -x "$(command -v eza)" ]; then
+    eza --icons --all "$@"
+  else
+    ls -a $@
+  fi
 }
 alias ls="list $@"
 
