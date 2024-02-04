@@ -7,9 +7,3 @@
 [submodule "zsh/plugins/zsh-syntax-highlighting"]
     path = zsh/plugins/zsh-syntax-highlighting
     url = https://github.com/zsh-users/zsh-syntax-highlighting
-[submodule "i3/wallpapers"]
-	path = i3/wallpapers
-	url = https://github.com/elementary/wallpapers.git
-[submodule ".tmux"]
-	path = .tmux
-	url = https://github.com/gpakosz/.tmux.git
