@@ -1,6 +1,7 @@
 [ -f $DOTFILES/git/git_aliases ] && source $DOTFILES/git/git_aliases
 
-alias ipaddr='ip -c addr' # alias to list ip output in color
+# alias to list ip output in color
+alias ip="ip -c $@"
 
 # use exa instead of ls
 list() {
