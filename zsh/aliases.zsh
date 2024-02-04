@@ -5,7 +5,7 @@ alias ip="ip -c $@"
 
 # use eza instead of ls, if eza is available
 GIVE_EZA_WARNING=true
-list () {
+list() {
   if [ -x "$(command -v eza)" ]; then
     eza --icons --all "$@"
   else
