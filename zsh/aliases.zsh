@@ -25,11 +25,20 @@ change_directory() {
 }
 alias cd="change_directory"
 
-# use bat instead of cat
+# use bat instead of cat, if bat is available
+GIVE_BAT_WARNING=true
 read_file() {
+  if [ -x "$(command -v bat)" ]; then
     bat "$@"
+  else
+    if "$GIVE_BAT_WARNING"; then
+      echo "bat is not installed, using cat instead"
+      GIVE_BAT_WARNING=false
+    fi
+    cat "$@"
+  fi
 }
-alias cat="bat $@"
+alias cat="read_file $@"
 
 # tmux aliases
 alias ta='tmux attach'
