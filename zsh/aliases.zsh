@@ -4,10 +4,15 @@
 alias ip="ip -c $@"
 
 # use eza instead of ls, if eza is available
+GIVE_EZA_WARNING=true
 list () {
   if [ -x "$(command -v eza)" ]; then
     eza --icons --all "$@"
   else
+    if "$GIVE_EZA_WARNING"; then
+      echo "eza is not installed, use ls instead"
+      GIVE_EZA_WARNING=false
+    fi
     ls -a $@
   fi
 }
