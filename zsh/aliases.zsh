@@ -10,7 +10,7 @@ list () {
     eza --icons --all "$@"
   else
     if "$GIVE_EZA_WARNING"; then
-      echo "eza is not installed, use ls instead"
+      echo "eza is not installed, using ls instead"
       GIVE_EZA_WARNING=false
     fi
     ls -a $@
