@@ -13,6 +13,9 @@ TERM = "xterm-256color"
 family = "RobotoMono Nerd Font"
 style = "Regular"
 
+[window]
+decorations = "None"
+
 [window.dimensions]
 columns = 100
 lines = 24
