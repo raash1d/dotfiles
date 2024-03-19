@@ -108,6 +108,9 @@ zsh_steps() {
     [ -f ~/.zshrc.pre-oh-my-zsh ] && rm ~/.zshrc.pre-oh-my-zsh
 
     create_file_link zsh .zshrc
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    git clone https://github.com/lukechilds/zsh-nvm ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-nvm
 }
 ##################################################
 
