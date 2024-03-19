@@ -14,7 +14,7 @@ family = "RobotoMono Nerd Font"
 style = "Regular"
 
 [window]
-decorations = "None"
+decorations = "full"
 
 [window.dimensions]
 columns = 100
