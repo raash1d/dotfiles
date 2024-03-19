@@ -12,7 +12,7 @@ fi
 export SUDO
 
 font="RobotoMono"
-font_path="https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/RobotoMono/Regular/complete/Roboto%20Mono%20Nerd%20Font%20Complete.ttf"
+font_path="https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/RobotoMono/Regular/RobotoMonoNerdFont-Regular.ttf"
 
 ################ Helper functions ################
 # usage: create_file_link <folder> <file> [link-name]
