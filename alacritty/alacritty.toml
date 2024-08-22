@@ -4,6 +4,7 @@ import = [
   # "~/.config/alacritty/themes/catppuccin-frappe.toml"
   "~/.config/alacritty/themes/catppuccin-macchiato.toml",
   # "~/.config/alacritty/themes/catppuccin-mocha.toml",
+  "~/.config/alacritty/local-config.toml", # file for machine specific configurations, it is skipped if it doesn't exist
 ]
 
 [env]
