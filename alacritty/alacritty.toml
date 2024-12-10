@@ -1,10 +1,11 @@
+[general]
 import = [
   # uncomment the flavour you want below:
   # "~/.config/alacritty/themes/catppuccin-latte.toml",
   # "~/.config/alacritty/themes/catppuccin-frappe.toml"
   "~/.config/alacritty/themes/catppuccin-macchiato.toml",
   # "~/.config/alacritty/themes/catppuccin-mocha.toml",
-  "~/.config/alacritty/local-config.toml", # file for machine specific configurations, it is skipped if it doesn't exist
+  "~/.config/alacritty/local-config.toml", # machine specific configuration; skipped if it doesn't exist
 ]
 
 [env]
