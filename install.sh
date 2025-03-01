@@ -7,7 +7,7 @@
 
 SUDO=
 if [ "$(whoami)" != root ]; then
-    SUDO=$SUDO
+    SUDO=sudo
 fi
 export SUDO
 
@@ -188,12 +188,38 @@ post_install_steps() {
 }
 
 pre_install_steps() {
-    # echo "Answer the following before the automated installation starts."
-    # echo "Enter golang toolchain tarball (.tar.gz) link (https://golang.org/dl): "
-    # read -r golangURL
+    # generic utilities
+    echo "Install cURL utility"
+    lib/install curl
+    echo "Install shellcheck"
+    lib/install shellcheck
+    echo "Install shellformat (shfmt)"
+    lib/install cmake
+    if [[ "$(uname)" == "Darwin" ]]; then
+        lib/install shfmt
+    elif [[ "$(uname)" == "Linux" ]]; then
+        if [[ ("$(lsb_release -si)" == "elementary") || ("$(lsb_release -si)" == "Ubuntu") || ("$(lsb_release -si)" == "Debian") ]]; then
+            if [ -x "$(command -v shfmt)" ]; then
+                echo "shfmt already installed"
+            else
+                (
+                    cd /tmp || return
+                    echo "Downloading shfmt utility"
+                    curl -L --progress-bar -o shfmt "$shfmtURL"
+                    chmod +x shfmt
+                    echo "Installing shfmt"
+                    $SUDO mv shfmt /usr/local/bin/
+                )
+            fi
+        fi
+    fi
+
+    echo "Answer the following before the automated installation starts."
+    echo "Enter golang toolchain tarball (.tar.gz) link (https://golang.org/dl): "
+    read -r golangURL
 
     if [[ "$(uname)" == "Linux" ]]; then
-        if [[ ("$(lsb_release -si)" == "elementary") || ("$(lsb_release -si)" == "Ubuntu") ]]; then
+        if [[ ("$(lsb_release -si)" == "elementary") || ("$(lsb_release -si)" == "Ubuntu") || ("$(lsb_release -si)" == "Debian") ]]; then
             echo "Enter link to download shfmt (shellformat) util (https://github.com/mvdan/sh/releases):"
             read -r shfmtURL
         fi
@@ -263,7 +289,7 @@ pre_install_steps() {
 
     # tools on linux
     if [[ "$(uname)" == "Linux" ]]; then
-        if [[ ("$(lsb_release -si)" == "elementary") || ("$(lsb_release -si)" == "Ubuntu") ]]; then
+        if [[ ("$(lsb_release -si)" == "elementary") || ("$(lsb_release -si)" == "Ubuntu") || ("$(lsb_release -si)" == "Debian") ]]; then
             echo "Installing Linux tools"
             lib/install build-essential
             # lib/install software-properties-common
@@ -286,7 +312,6 @@ pre_install_steps() {
     # C/C++ toolchain
     # echo "Installing C/C++ toolchain"
     # lib/install llvm
-    # lib/install cmake
     # lib/install uncrustify
 
     # node/javascript/typescript toolchain
@@ -296,31 +321,6 @@ pre_install_steps() {
     # lib/install node-gyp
     # lib/install npm
     # $SUDO npm install -g typescript
-
-    # generic utilities
-    echo "Install cURL utility"
-    lib/install curl
-    echo "Install shellcheck"
-    lib/install shellcheck
-    echo "Install shellformat (shfmt)"
-    if [[ "$(uname)" == "Darwin" ]]; then
-        lib/install shfmt
-    elif [[ "$(uname)" == "Linux" ]]; then
-        if [[ ("$(lsb_release -si)" == "elementary") || ("$(lsb_release -si)" == "Ubuntu") ]]; then
-            if [ -x "$(command -v shfmt)" ]; then
-                echo "shfmt already installed"
-            else
-                (
-                    cd /tmp || return
-                    echo "Downloading shfmt utility"
-                    curl -L --progress-bar -o shfmt "$shfmtURL"
-                    chmod +x shfmt
-                    echo "Installing shfmt"
-                    $SUDO mv shfmt /usr/local/bin/
-                )
-            fi
-        fi
-    fi
 
     # install rust-based utilities
     # dependency for alacritty
@@ -389,7 +389,7 @@ Darwin)
     ;;
 Linux)
     case "$(lsb_release -si)" in
-    Ubuntu | elementary)
+    Ubuntu | elementary | Debian)
         echo "You're on an Ubuntu-based distro, IT'S SUPPORTED! :)"
         ;;
     *)
@@ -404,11 +404,11 @@ Linux)
     ;;
 esac
 
-pre_install_steps
-git_steps
+# pre_install_steps
+# git_steps
 # vim_steps
-zsh_steps
-tmux_steps
+# zsh_steps
+# tmux_steps
 # docker_steps
 install_fonts
 post_install_steps
