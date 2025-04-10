@@ -74,8 +74,7 @@ git_steps() {
 #         brew install macvim
 #         ;;
 #     Linux)
-#         lib/install vim-gnome
-#         lib/install vim-gtk3
+#         lib/install vim-gnome vim-gtk3
 #         ;;
 #     esac
 #
@@ -265,12 +264,7 @@ pre_install_steps() {
     if [[ "$(uname)" == "Linux" ]]; then
         if [[ ("$(lsb_release -si)" == "elementary") || ("$(lsb_release -si)" == "Ubuntu") ]]; then
             echo "Installing Linux tools"
-            lib/install build-essential
-            # lib/install software-properties-common
-            # lib/install clang
-            # lib/install clang-tools-8
-            # lib/install clang-tidy
-            # lib/install clang-format
+            lib/install build-essential # software-properties-common clang clang-tools-8 clang-tidy clang-format
             # echo "Updating clangd alternatives"
             # $SUDO update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-8 100
         fi
@@ -285,26 +279,18 @@ pre_install_steps() {
 
     # C/C++ toolchain
     # echo "Installing C/C++ toolchain"
-    # lib/install llvm
-    # lib/install cmake
-    # lib/install uncrustify
+    # lib/install llvm cmake uncrustify
 
     # node/javascript/typescript toolchain
     # echo "Installing Node/JavaScript/TypeScript toolchain"
-    # lib/install libssl1.0-dev
-    # lib/install nodejs-dev
-    # lib/install node-gyp
-    # lib/install npm
+    # lib/install libssl1.0-dev nodejs-dev node-gyp npm
     # $SUDO npm install -g typescript
 
     # generic utilities
-    echo "Install cURL utility"
-    lib/install curl
-    echo "Install shellcheck"
-    lib/install shellcheck
+    lib/install curl shellcheck
     echo "Install shellformat (shfmt)"
     if [[ "$(uname)" == "Darwin" ]]; then
-        lib/install shfmt
+        lib/install shfmt zsh-autosuggestions
     elif [[ "$(uname)" == "Linux" ]]; then
         if [[ ("$(lsb_release -si)" == "elementary") || ("$(lsb_release -si)" == "Ubuntu") ]]; then
             if [ -x "$(command -v shfmt)" ]; then
@@ -325,7 +311,7 @@ pre_install_steps() {
     # install rust-based utilities
     # dependency for alacritty
     lib/install libfontconfig1-dev
-    cargo install starship bat eza fd-find ripgrep tealdeer alacritty
+    cargo install starship bat eza fd-find ripgrep tealdeer alacritty zoxide --locked
     echo "Loading tldr cache"
     tldr --update
     ln -sf "$HOME/dotfiles/alacritty" "$HOME/.config/"

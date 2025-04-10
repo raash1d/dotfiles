@@ -1,16 +1,9 @@
-echo "Installing $1..."
-
-# https://github.com/Parth/dotfiles/blob/master/deploy
-# Check if installed before installing
-if [ -x "$(command -v "$1")" ]; then
-    echo "$1 installed"
-    exit
-fi
+echo "Installing $@..."
 
 case "$(uname)" in
 Darwin)
     if [ -x "$(command -v brew)" ]; then
-        brew install "$1"
+        brew install "$@"
     else
         echo "No package manager installed on your Mac. Only Homebrew is supported on macOS."
     fi
@@ -18,7 +11,7 @@ Darwin)
 Linux)
     case $(lsb_release -si) in
     Ubuntu | elementary)
-        $SUDO apt install "$1" -y
+        $SUDO apt install "$@" -y
         ;;
     *)
         echo "This linux distro is not supported yet."
