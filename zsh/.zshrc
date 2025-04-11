@@ -5,9 +5,6 @@ else
   echo "tmux not installed"
 fi
 
-# setup starship prompt
-eval "$(starship init zsh)"
-
 source "$DOTFILES/zsh/plugins.zsh"
 
 # source system specific paths, if exists
@@ -24,4 +21,5 @@ autoload -Uz compinit
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc
 
+eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
