@@ -8,6 +8,8 @@ fi
 # setup starship prompt
 eval "$(starship init zsh)"
 
+source "$DOTFILES/zsh/plugins.zsh"
+
 # source system specific paths, if exists
 [ -e $HOME/.localrc ] && source $HOME/.localrc
 
