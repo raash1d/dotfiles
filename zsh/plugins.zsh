@@ -40,7 +40,6 @@ _install_zsh_plugin() {
     git clone "https://github.com/$1.git" "$plugin_dir"
   fi
   for file in $plugin_dir/*.plugin.zsh; do
-    echo "sourcing $file"
     [ -f "$file" ] && source "$file"
   done
 }
