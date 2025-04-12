@@ -30,7 +30,6 @@ zsh_plugin() {
       _zsh_plugin_usage
       ;;
   esac
-  
 }
 
 INSTALL_DIR="$HOME/.zsh"
@@ -57,3 +56,5 @@ _remove_zsh_plugin() {
 zsh_plugin install zsh-users/zsh-autosuggestions
 zsh_plugin install zsh-users/zsh-syntax-highlighting
 zsh_plugin install lukechilds/zsh-nvm
+export NVM_LAZY_LOAD=true # lazy loads the zsh-nvm plugin, this speeds up shell startup
+export NVM_LAZY_LOAD_EXTRA_COMMANDS=('nvim' 'nvim*') # trigger zsh-nvm lazy loading for nvim
