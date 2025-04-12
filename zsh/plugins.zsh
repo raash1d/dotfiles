@@ -40,7 +40,7 @@ _install_zsh_plugin() {
   if [ ! -d "$plugin_dir/.git" ]; then
     git clone "https://github.com/$1.git" "$plugin_dir"
   fi
-  for file in $plugin_dir/*.zsh; do
+  for file in $plugin_dir/*.plugin.zsh; do
     echo "sourcing $file"
     [ -f "$file" ] && source "$file"
   done
@@ -56,5 +56,4 @@ _remove_zsh_plugin() {
 
 zsh_plugin install zsh-users/zsh-autosuggestions
 zsh_plugin install zsh-users/zsh-syntax-highlighting
-# zsh_plugin install zdharma-continuum/fast-syntax-highlighting
 zsh_plugin install lukechilds/zsh-nvm
