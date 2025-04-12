@@ -5,6 +5,13 @@ else
   echo "tmux not installed"
 fi
 
+setopt prompt_subst
+zstyle ':completion:*' menu select
+fpath+=~/.zfunc
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit
+compinit
+
 # For a full list of active aliases, run `alias`.
 [ -f "$DOTFILES/zsh/aliases.zsh" ] && source "$DOTFILES/zsh/aliases.zsh" || echo "aliases.zsh not found"
 [ -f "$DOTFILES/zsh/plugins.zsh" ] && source "$DOTFILES/zsh/plugins.zsh" || echo "plugins.zsh not found"
@@ -19,9 +26,6 @@ export FZF_DEFAULT_COMMAND="fd --type f"
 # enable vi mode
 bindkey -v
 
-autoload -Uz compinit
-zstyle ':completion:*' menu select
-fpath+=~/.zfunc
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
