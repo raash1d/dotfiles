@@ -5,7 +5,9 @@ else
   echo "tmux not installed"
 fi
 
-source "$DOTFILES/zsh/plugins.zsh"
+# For a full list of active aliases, run `alias`.
+[ -f "$DOTFILES/zsh/aliases.zsh" ] && source "$DOTFILES/zsh/aliases.zsh" || echo "aliases.zsh not found"
+[ -f "$DOTFILES/zsh/plugins.zsh" ] && source "$DOTFILES/zsh/plugins.zsh" || echo "plugins.zsh not found"
 
 # source system specific paths, if exists
 [ -e $HOME/.localrc ] && source $HOME/.localrc

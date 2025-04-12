@@ -1,4 +1,2 @@
-source "$HOME/dotfiles/zsh/exports.zsh"
-# For a full list of active aliases, run `alias`.
-source "$DOTFILES/zsh/aliases.zsh"
-source "$HOME/.cargo/env"
+[ -f "$HOME/dotfiles/zsh/exports.zsh" ] && source "$HOME/dotfiles/zsh/exports.zsh" || echo "exports.zsh not found"
+[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env" || echo "$HOME/.cargo/env not found"
