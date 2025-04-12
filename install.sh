@@ -311,10 +311,11 @@ pre_install_steps() {
     # install rust-based utilities
     # dependency for alacritty
     lib/install libfontconfig1-dev
-    cargo install starship bat eza fd-find ripgrep tealdeer alacritty zoxide --locked
+    cargo install starship bat eza fd-find ripgrep tealdeer alacritty zoxide git-delta --locked
     echo "Loading tldr cache"
     tldr --update
     ln -sf "$HOME/dotfiles/alacritty" "$HOME/.config/"
+    ln -sf "$HOME/dotfiles/lazygit" "$HOME/.config/"
 
     #install fzf (fuzzy file finder)
     if [ -x "$(command -v fzf)" ]; then
