@@ -316,6 +316,7 @@ pre_install_steps() {
     tldr --update
     ln -sf "$HOME/dotfiles/alacritty" "$HOME/.config/"
     ln -sf "$HOME/dotfiles/lazygit" "$HOME/.config/"
+    ln -sf "$HOME/dotfiles/starship/starship.toml" "$HOME/.config/"
 
     #install fzf (fuzzy file finder)
     if [ -x "$(command -v fzf)" ]; then
