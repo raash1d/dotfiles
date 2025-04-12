@@ -287,7 +287,7 @@ pre_install_steps() {
     # $SUDO npm install -g typescript
 
     # generic utilities
-    lib/install curl shellcheck
+    lib/install curl shellcheck direnv
     echo "Install shellformat (shfmt)"
     if [[ "$(uname)" == "Darwin" ]]; then
         lib/install shfmt
