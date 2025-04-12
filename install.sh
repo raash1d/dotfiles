@@ -290,7 +290,7 @@ pre_install_steps() {
     lib/install curl shellcheck
     echo "Install shellformat (shfmt)"
     if [[ "$(uname)" == "Darwin" ]]; then
-        lib/install shfmt zsh-autosuggestions
+        lib/install shfmt
     elif [[ "$(uname)" == "Linux" ]]; then
         if [[ ("$(lsb_release -si)" == "elementary") || ("$(lsb_release -si)" == "Ubuntu") ]]; then
             if [ -x "$(command -v shfmt)" ]; then
