@@ -5,3 +5,5 @@
 git/gitconfig
 nvim/lazy-lock.json
 alacritty/local-config.toml
+zsh/plugins/lukechilds/zsh-nvm
+zsh/plugins/zsh-users
