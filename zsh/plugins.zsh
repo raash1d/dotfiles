@@ -35,7 +35,7 @@ zsh_plugin() {
   esac
 }
 
-INSTALL_DIR="$HOME/.zsh"
+INSTALL_DIR="$DOTFILES/zsh/plugins"
 
 _install_zsh_plugin() {
   local plugin_dir="$INSTALL_DIR/$1"
