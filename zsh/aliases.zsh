@@ -19,8 +19,18 @@ list() {
 alias ls="list $@"
 
 # list files & folders after moving to new directory
+# if zoxide is installed, use that instead of cd
+GIVE_ZOXIDE_WARNING=true
 change_directory() {
-    [ "$#" -eq 0 ] && builtin cd "$HOME" || builtin cd "$1"
+    if [ -x "$(command -v zoxide)" ]; then
+      [ "$#" -eq 0 ] && z || z "$1"
+    else
+      if "$GIVE_EZA_WARNING"; then
+        echo "zoxide is not installed, using builtin cd instead"
+        GIVE_ZOXIDE_WARNING=false
+      fi
+      [ "$#" -eq 0 ] && builtin cd "$HOME" || builtin cd "$1"
+    fi
     ls
 }
 alias cd="change_directory"
