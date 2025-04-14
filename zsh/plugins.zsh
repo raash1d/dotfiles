@@ -2,7 +2,7 @@ _zsh_plugin_usage() {
   echo "Usage:"
   echo "zsh_plugin <command> <plugin>"
   echo "Parameters:"
-  echo "command: install, remove"
+  echo "command: install, remove, _source"
   echo "plugin: e.g., lukechilds/zsh-nvm"
   echo ""
   echo "Examples:"
@@ -25,6 +25,9 @@ zsh_plugin() {
     "remove")
       _remove_zsh_plugin $plugin
       ;;
+    "_source")
+      _source_zsh_plugin $plugin
+      ;;
     *) echo default
       echo "Invalid arguments"
       _zsh_plugin_usage
@@ -39,6 +42,11 @@ _install_zsh_plugin() {
   if [ ! -d "$plugin_dir/.git" ]; then
     git clone "https://github.com/$1.git" "$plugin_dir"
   fi
+  _source_zsh_plugin "$1"
+}
+
+_source_zsh_plugin() {
+  local plugin_dir="$INSTALL_DIR/$1"
   for file in $plugin_dir/*.plugin.zsh; do
     [ -f "$file" ] && source "$file"
   done
