@@ -1,11 +1,22 @@
 [general]
 import = [
   # uncomment the flavour you want below:
+
+  # For Linux/macOS
   # "~/.config/alacritty/themes/catppuccin-latte.toml",
-  # "~/.config/alacritty/themes/catppuccin-frappe.toml"
+  # "~/.config/alacritty/themes/catppuccin-frappe.toml",
   "~/.config/alacritty/themes/catppuccin-macchiato.toml",
   # "~/.config/alacritty/themes/catppuccin-mocha.toml",
-  "~/.config/alacritty/local-config.toml", # machine specific configuration; skipped if it doesn't exist
+
+  # For Windows
+  # "~/AppData/Roaming/alacritty/themes/catppuccin-latte.toml",
+  # "~/AppData/Roaming/alacritty/themes/catppuccin-frappe.toml",
+  "~/AppData/Roaming/alacritty/themes/catppuccin-macchiato.toml",
+  # "~/AppData/Roaming/alacritty/themes/catppuccin-mocha.toml",
+
+  # machine specific configuration; skipped if it doesn't exist
+  "~/AppData/Roaming/alacritty/local-config.toml", # windows
+  "~/.config/alacritty/local-config.toml", # linux/macOS
 ]
 
 [env]
