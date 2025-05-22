@@ -4,6 +4,7 @@
     "lazyvim.plugins.extras.ai.copilot-chat",
     "lazyvim.plugins.extras.coding.mini-surround",
     "lazyvim.plugins.extras.dap.core",
+    "lazyvim.plugins.extras.editor.outline",
     "lazyvim.plugins.extras.lang.clangd",
     "lazyvim.plugins.extras.lang.cmake",
     "lazyvim.plugins.extras.lang.docker",
@@ -15,6 +16,9 @@
     "lazyvim.plugins.extras.lang.terraform",
     "lazyvim.plugins.extras.lang.toml",
     "lazyvim.plugins.extras.lang.yaml",
+    "lazyvim.plugins.extras.ui.smear-cursor",
+    "lazyvim.plugins.extras.ui.treesitter-context",
+    "lazyvim.plugins.extras.util.mini-hipatterns"
   ],
   "install_version": 7,
   "news": {
