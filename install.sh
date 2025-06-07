@@ -376,7 +376,7 @@ Darwin)
     ;;
 Linux)
     case "$(lsb_release -si)" in
-    Ubuntu | elementary)
+    Ubuntu | elementary | Debian)
         echo "You're on an Ubuntu-based distro, IT'S SUPPORTED! :)"
         ;;
     *)
