@@ -200,6 +200,9 @@ pre_install_steps() {
       fi
     fi
 
+    echo "Enter lazygit tarball (.tar.gz) link (https://github.com/jesseduffield/lazygit/releases): "
+    read -r lazygitURL
+
     case "$(uname)" in
     Darwin)
         # install Homebrew on macOS
@@ -260,6 +263,19 @@ pre_install_steps() {
 
         # Temporarily export go path in PATH
         export PATH="$PATH:/usr/local/go/bin"
+    fi
+
+    # lazygit
+    if [ -x "$(command -v lazygit)" ]; then
+        echo "Go toolchain already installed"
+    else
+        (
+          cd /tmp || return
+          echo "Downloading lazygit"
+          curl -LO --progress-bar "$lazygitURL"
+          echo "Installing lazygit"
+          $SUDO tar -C /usr/local/bin -xzf "${lazygitURL##*/}" # get name of tarball only
+        )
     fi
 
     # tools on linux
