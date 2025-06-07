@@ -113,7 +113,11 @@ zsh_steps() {
 
 ############## tmux specific steps ###############
 tmux_steps() {
-    # Install tmux dependencies
+    # TODO:Install tmux dependencies
+    # libevent-dev libncurses-dev yacc
+    # TODO: Use the following link to install latest
+    # https://github.com/tmux/tmux/releases
+    # TODO: make this installable cross-platform
     echo "Installing tmux"
     lib/install tmux
 
