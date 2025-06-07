@@ -67,3 +67,6 @@ export NVM_LAZY_LOAD=true # lazy loads the zsh-nvm plugin, this speeds up shell 
 export NVM_LAZY_LOAD_EXTRA_COMMANDS=('nvim' 'nvim*') # trigger zsh-nvm lazy loading for nvim
 
 zsh_plugin _source ohmyzsh/git
+if [ ! -x "$(command -v node)" ]; then
+  nvm install --lts
+fi
