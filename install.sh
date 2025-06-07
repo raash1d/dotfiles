@@ -7,7 +7,12 @@
 
 SUDO=
 if [ "$(whoami)" != root ]; then
-    SUDO=$SUDO
+    SUDO="sudo"
+else
+    read -n 1 -p "Do you really want to run as root? (y/[n]): " really_root
+    if [[ "$really_root" != y ]]; then
+        exit 0
+    fi
 fi
 export SUDO
 
