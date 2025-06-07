@@ -98,23 +98,16 @@ git_steps() {
 
 ############### zsh specific steps ###############
 zsh_steps() {
-    # Install zsh dependencies
     echo "Installing zsh"
     lib/install zsh
 
-    # Install oh-my-zsh
-    echo "Downloading and Installing oh-my-zsh framework"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-    # clean up previous zsh configs
     echo "Cleaning up previous zsh config files"
-    [ -f ~/.zshrc ] && rm .zshrc
-    [ -f ~/.zshrc.pre-oh-my-zsh ] && rm ~/.zshrc.pre-oh-my-zsh
+    [ -f ~/.zshrc ] && rm ~/.zshrc
 
     create_file_link zsh .zshrc
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-    git clone https://github.com/lukechilds/zsh-nvm ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-nvm
+
+    echo "Setup zsh as default shell"
+    chsh -s "$(command -v zsh)"
 }
 ##################################################
 
