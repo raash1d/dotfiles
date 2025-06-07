@@ -347,29 +347,10 @@ pre_install_steps() {
 
 docker_steps() {
     if [[ "$(uname)" == "Linux" ]]; then
-        if [[ ("$(lsb_release -si)" == "elementary") || ("$(lsb_release -si)" == "Ubuntu") ]]; then
-            if [ -x "$(command -v docker)" ]; then
-                echo "docker already installed"
-            else
-                echo "Installing docker"
-                $SUDO apt install \
-                    apt-transport-https \
-                    ca-certificates \
-                    curl \
-                    gnupg-agent \
-                    software-properties-common -y
-                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | $SUDO apt-key add -
-                $SUDO apt-key fingerprint 0EBFCD88
-                $SUDO add-apt-repository \
-                    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-                    $(lsb_release -csu) \
-                    stable"
-                $SUDO apt update -y
-                $SUDO apt install docker-ce docker-ce-cli containerd.io -y
-                $SUDO groupadd docker
-                $SUDO usermod -aG docker "$USER"
-                newgrp docker # restart system otherwise
-            fi
+        if [ -x "$(command -v docker)" ]; then
+            echo "docker already installed"
+        else
+            echo "Install docker using instructions at https://docs.docker.com/engine/install/"
         fi
     fi
 }
