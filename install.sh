@@ -194,10 +194,10 @@ pre_install_steps() {
     read -r golangURL
 
     if [[ "$(uname)" == "Linux" ]]; then
-        if [[ ("$(lsb_release -si)" == "elementary") || ("$(lsb_release -si)" == "Ubuntu") ]]; then
-            echo "Enter link to download shfmt (shellformat) util (https://github.com/mvdan/sh/releases):"
-            read -r shfmtURL
-        fi
+      if [[ ("$(lsb_release -si)" == "elementary") || ("$(lsb_release -si)" == "Ubuntu") || ("$(lsb_release -si)" == "Debian") ]]; then
+        echo "Enter link to download shfmt (shellformat) util (https://github.com/mvdan/sh/releases):"
+        read -r shfmtURL
+      fi
     fi
 
     case "$(uname)" in
