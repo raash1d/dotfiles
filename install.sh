@@ -280,7 +280,7 @@ pre_install_steps() {
 
     # tools on linux
     if [[ "$(uname)" == "Linux" ]]; then
-        if [[ ("$(lsb_release -si)" == "elementary") || ("$(lsb_release -si)" == "Ubuntu") ]]; then
+        if [[ ("$(lsb_release -si)" == "elementary") || ("$(lsb_release -si)" == "Ubuntu") || ("$(lsb_release -si)" == "Debian") ]]; then
             echo "Installing Linux tools"
             lib/install build-essential # software-properties-common clang clang-tools-8 clang-tidy clang-format
             # echo "Updating clangd alternatives"
@@ -310,7 +310,7 @@ pre_install_steps() {
     if [[ "$(uname)" == "Darwin" ]]; then
         lib/install shfmt
     elif [[ "$(uname)" == "Linux" ]]; then
-        if [[ ("$(lsb_release -si)" == "elementary") || ("$(lsb_release -si)" == "Ubuntu") ]]; then
+        if [[ ("$(lsb_release -si)" == "elementary") || ("$(lsb_release -si)" == "Ubuntu") || ("$(lsb_release -si)" == "Debian") ]]; then
             if [ -x "$(command -v shfmt)" ]; then
                 echo "shfmt already installed"
             else
