@@ -10,7 +10,7 @@ Darwin)
     ;;
 Linux)
     case $(lsb_release -si) in
-    Ubuntu | elementary)
+    Ubuntu | elementary | Debian)
         $SUDO apt install "$@" -y
         ;;
     *)
