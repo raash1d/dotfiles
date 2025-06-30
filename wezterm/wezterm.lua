@@ -15,7 +15,7 @@ config.font_size = 14
 config.font_rules = {
 	{
 		italic = true,
-		font = wezterm.font("0xProto Nerd Font Mono", { weight = "Regular", italic = true }),
+		font = wezterm.font("RecMonoCasual Nerd Font", { weight = "Regular", italic = true }),
 	},
 }
 config.harfbuzz_features = { "ss01" }
