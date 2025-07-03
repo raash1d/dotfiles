@@ -1,9 +1,17 @@
 return {
   "hedyhli/outline.nvim",
-  opts = {
-    keymaps = {
-      up_and_jump = "k",
-      down_and_jump = "j",
-    },
+  config = function()
+    require("outline").setup({
+      outline_window = {
+        auto_jump = true,
+      },
+      providers = {
+        priority = { "lsp", "coc", "markdown", "norg", "man", "treesitter" },
+      },
+    })
+  end,
+  event = "VeryLazy",
+  dependencies = {
+    "epheien/outline-treesitter-provider.nvim",
   },
 }
