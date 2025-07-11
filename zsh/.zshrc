@@ -19,6 +19,9 @@ compinit
 # source system specific paths, if exists
 [ -e $HOME/.localrc ] && source $HOME/.localrc
 
+# Neovim local options file path (customizable)
+export NVIM_LOCAL_OPTIONS="$HOME/silabs-dotfiles/.config/nvim/lua/config/silabs-options.lua"
+
 # fzf fuzzy finder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND="fd --type f"
