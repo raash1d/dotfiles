@@ -355,6 +355,24 @@ docker_steps() {
   fi
 }
 
+############### opencode specific steps ###############
+opencode_steps() {
+  echo "Installing opencode"
+
+  if [ -x "$(command -v opencode)" ]; then
+    echo "opencode already installed"
+  else
+    echo "Installing opencode via universal install script"
+    curl -fsSL https://opencode.ai/install | bash
+  fi
+
+  # Create opencode config symlink
+  echo "Creating opencode config symlink"
+  mkdir -p "$HOME/.config"
+  ln -sf "$HOME/dotfiles/opencode" "$HOME/.config/"
+}
+##################################################
+
 ############### steps to perform manually ###############
 manual_steps() {
   step="
@@ -396,6 +414,7 @@ git_steps
 # vim_steps
 zsh_steps
 tmux_steps
+opencode_steps
 # docker_steps
 install_fonts
 post_install_steps
