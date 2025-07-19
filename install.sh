@@ -355,6 +355,56 @@ docker_steps() {
   fi
 }
 
+############### neovim specific steps ###############
+neovim_steps() {
+  echo "Installing Neovim"
+
+  if [ -x "$(command -v nvim)" ]; then
+    echo "Neovim already installed"
+  else
+    case "$(uname)" in
+    Darwin)
+      # Install via Homebrew on macOS
+      lib/install neovim
+      ;;
+    Linux)
+      # Check distribution and install accordingly
+      case "$(lsb_release -si)" in
+      Ubuntu | elementary | Debian)
+        # Download and install latest Neovim from GitHub releases
+        echo "Downloading latest Neovim for $(lsb_release -si)"
+        (
+          cd /tmp || return
+          curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+          $SUDO rm -rf /opt/nvim
+          $SUDO tar -C /opt -xzf nvim-linux-x86_64.tar.gz
+          $SUDO ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
+        )
+        # Install latest Python support via pip
+        $SUDO apt update
+        $SUDO apt install python3-pip -y
+        pip3 install --user pynvim
+        ;;
+      *)
+        echo "Unsupported Linux distribution for Neovim installation"
+        echo "Please install Neovim manually for your distribution"
+        ;;
+      esac
+      ;;
+    *)
+      echo "Unsupported OS for automated Neovim installation"
+      echo "Please install Neovim manually for your platform"
+      ;;
+    esac
+  fi
+
+  # Create neovim config symlink
+  echo "Creating Neovim config symlink"
+  mkdir -p "$HOME/.config"
+  ln -sf "$HOME/dotfiles/nvim" "$HOME/.config/"
+}
+##################################################
+
 ############### opencode specific steps ###############
 opencode_steps() {
   echo "Installing opencode"
@@ -412,6 +462,7 @@ esac
 pre_install_steps
 git_steps
 # vim_steps
+neovim_steps
 zsh_steps
 tmux_steps
 opencode_steps
