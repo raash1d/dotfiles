@@ -9,6 +9,7 @@ vim.filetype.add({
   pattern = {
     -- detect .localrc files as shell scripts
     [".*%.localrc"] = "sh",
+    [".*%rc"] = "sh",
   },
 })
 
