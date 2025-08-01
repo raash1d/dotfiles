@@ -5,6 +5,7 @@
 vim.filetype.add({
   filename = {
     ["requirements.txt"] = "config",
+    [".prettierrc"] = "yaml",
   },
   pattern = {
     -- detect .localrc files as shell scripts
