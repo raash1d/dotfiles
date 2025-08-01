@@ -1,0 +1,18 @@
+extends: default
+
+rules:
+  indentation:
+    spaces: 2
+    indent-sequences: true
+  line-length:
+    max: 120
+    level: warning
+  truthy:
+    allowed-values: ['true', 'false']
+  comments:
+    require-starting-space: true
+  custom-flow-style:
+    level: error
+    pattern: '{[^}]*}'
+    message: "Flow-style mappings (e.g., { key: value }) are not allowed. Use block-style instead."
+
