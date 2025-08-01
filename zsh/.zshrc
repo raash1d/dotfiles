@@ -30,6 +30,18 @@ export FZF_DEFAULT_COMMAND="fd --type f"
 bindkey -v
 
 
-eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
-eval "$(direnv hook zsh)"
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+else
+  echo "starship not installed"
+fi
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+else
+  echo "zoxide not installed"
+fi
+if command -v direnv >/dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+else
+  echo "direnv not installed"
+fi
