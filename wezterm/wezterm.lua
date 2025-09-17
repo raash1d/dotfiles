@@ -11,7 +11,7 @@ config.font = wezterm.font_with_fallback({
 	"JetBrains Mono",
 	"Noto Color Emoji",
 })
-config.font_size = 14
+config.font_size = 12
 config.font_rules = {
 	{
 		italic = true,
