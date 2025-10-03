@@ -13,3 +13,5 @@ if [[ $(uname -o) -eq "Darwin" ]]; then
   export XDG_CONFIG_HOME="$HOME/.config"
 fi
 
+# zoxide: Print the matched directory before navigating to it when set to 1
+export _ZO_ECHO=1
