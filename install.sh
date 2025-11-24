@@ -334,12 +334,9 @@ golang_steps() {
 }
 
   # install rust-based utilities
-  # dependency for alacritty
-  lib/install libfontconfig1-dev
-  cargo install starship bat eza fd-find ripgrep tealdeer alacritty zoxide git-delta --locked
+  cargo install starship bat eza fd-find ripgrep tealdeer zoxide git-delta --locked
   echo "Loading tldr cache"
   tldr --update
-  ln -sf "$HOME/dotfiles/alacritty" "$HOME/.config/"
   ln -sf "$HOME/dotfiles/starship/starship.toml" "$HOME/.config/"
 }
 
