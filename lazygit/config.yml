@@ -1,7 +1,6 @@
 git:
-  paging:
-    colorArg: always
-    pager: delta --dark --paging=never --syntax-theme base16-256 -s
-
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never --syntax-theme base16-256 -s
 gui:
   skipDiscardChangeWarning: true
