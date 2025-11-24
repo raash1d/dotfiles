@@ -136,6 +136,9 @@ tmux_steps() {
     lib/install xsel
     ;;
   esac
+
+  git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+  echo "Restart terminal and run prefix(\`)+I to install tmux plugins"
 }
 ##################################################
 
