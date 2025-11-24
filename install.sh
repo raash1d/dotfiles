@@ -267,6 +267,17 @@ pre_install_steps() {
   # generic utilities
   lib/install curl shellcheck direnv
 }
+
+fzf_steps() {
+  #install fzf (fuzzy file finder)
+  if [ -x "$(command -v fzf)" ]; then
+    echo "fzf already installed"
+  else
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
+  fi
+}
+
 shfmt_steps() {
   echo "Install shellformat (shfmt)"
   case "$(uname)" in
@@ -348,9 +359,6 @@ rust_tools_steps() {
   ln -sf "$HOME/dotfiles/starship/starship.toml" "$HOME/.config/"
 }
 
-  #install fzf (fuzzy file finder)
-  if [ -x "$(command -v fzf)" ]; then
-    echo "fzf already installed"
 lazygit_steps() {
   echo "Enter lazygit tarball (.tar.gz) link (https://github.com/jesseduffield/lazygit/releases): "
   read -r lazygitURL
@@ -358,8 +366,6 @@ lazygit_steps() {
   if [ -x "$(command -v lazygit)" ]; then
     echo "lazygit already installed"
   else
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install
     (
       cd /tmp || return
       echo "Downloading lazygit"
@@ -488,6 +494,7 @@ Linux)
 esac
 
 pre_install_steps
+fzf_steps
 shfmt_steps
 golang_steps
 rust_steps
