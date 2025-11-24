@@ -18,6 +18,7 @@ export SUDO
 
 font="RobotoMono"
 font_path="https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/RobotoMono/Regular/RobotoMonoNerdFont-Regular.ttf"
+font_recursive_cmd="curl -fsSL 'https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Recursive.tar.xz' | tar x 'RecMonoCasualNerdFont-Regular.ttf'"
 
 ################ Helper functions ################
 # usage: create_file_link <folder> <file> [link-name]
@@ -156,9 +157,17 @@ install_fonts() {
   Linux)
     mkdir -p ~/.local/share/fonts
     curl -fLo "$HOME/.local/share/fonts/$font_name" "$font_path"
+    (
+      cd "$HOME/.local/share/fonts"
+      eval "$font_recursive_cmd"
+    )
     ;;
   Darwin)
     curl -fLo "/Users/$(whoami)/Library/Fonts/$font_name" "$font_path"
+    (
+      cd "/Users/$(whoami)/Library/Fonts"
+      eval "$font_recursive_cmd"
+    )
     ;;
   esac
   fc-cache -vf
