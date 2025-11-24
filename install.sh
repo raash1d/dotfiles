@@ -238,16 +238,6 @@ pre_install_steps() {
     ;;
   esac
 
-  # rust toolchain
-  PATH="$PATH:/$(whoami)/.cargo/bin"
-  export PATH
-  if [ -x "$(command -v rustc)" ]; then
-    echo "Rust toolchain already installed"
-  else
-    echo "Installing Rust toolchain"
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-  fi
-
   # tools on linux
   if [[ "$(uname)" == "Linux" ]]; then
     if [[ ("$(lsb_release -si)" == "elementary") || ("$(lsb_release -si)" == "Ubuntu") || ("$(lsb_release -si)" == "Debian") ]]; then
@@ -332,6 +322,24 @@ golang_steps() {
     export PATH="$PATH:/usr/local/go/bin"
   fi
 }
+
+rust_steps() {
+  # rust toolchain
+  PATH="$PATH:/$(whoami)/.cargo/bin"
+  export PATH
+  if [ -x "$(command -v rustc)" ]; then
+    echo "Rust toolchain already installed"
+  else
+    echo "Installing Rust toolchain"
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  fi
+}
+
+rust_tools_steps() {
+  if [ ! -x "$(command -v rustc)" ]; then
+    echo "Rust toolchain is not installed, hence Rust-based tools cannot be installed"
+    return
+  fi
 
   # install rust-based utilities
   cargo install starship bat eza fd-find ripgrep tealdeer zoxide git-delta --locked
@@ -482,6 +490,8 @@ esac
 pre_install_steps
 shfmt_steps
 golang_steps
+rust_steps
+rust_tools_steps
 lazygit_steps
 git_steps
 # vim_steps
