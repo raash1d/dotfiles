@@ -439,6 +439,47 @@ neovim_steps() {
 }
 ##################################################
 
+wezterm_steps() {
+  echo "Installing WezTerm"
+
+  if [ -x "$(command -v wezterm)" ]; then
+    echo "WezTerm already installed"
+  else
+    case "$(uname)" in
+    Darwin)
+      brew install --cask wezterm
+      ;;
+    Linux)
+      # Check distribution and install accordingly
+      case "$(lsb_release -si)" in
+      Ubuntu | elementary | Debian)
+        echo "Downloading latest WezTerm for $(lsb_release -si)"
+        curl -fsSL https://apt.fury.io/wez/gpg.key | $SUDO gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
+        echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | $SUDO tee /etc/apt/sources.list.d/wezterm.list
+        $SUDO chmod 644 /usr/share/keyrings/wezterm-fury.gpg
+        $SUDO apt update
+        $SUDO apt install wezterm
+        ;;
+      *)
+        echo "Unsupported Linux distribution for WezTerm installation"
+        echo "Please install WezTerm manually for your distribution"
+        ;;
+      esac
+      ;;
+    *)
+      echo "Unsupported OS for automated WezTerm installation"
+      echo "Please install WezTerm manually for your platform"
+      ;;
+    esac
+  fi
+
+  # Create wezterm config symlink
+  echo "Creating WezTerm config symlink"
+  mkdir -p "$HOME/.config"
+  ln -sf "$HOME/dotfiles/wezterm" "$HOME/.config/"
+}
+##################################################
+
 ############### opencode specific steps ###############
 opencode_steps() {
   echo "Installing opencode"
@@ -503,6 +544,7 @@ lazygit_steps
 git_steps
 # vim_steps
 neovim_steps
+wezterm_steps
 zsh_steps
 tmux_steps
 opencode_steps
