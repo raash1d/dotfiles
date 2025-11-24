@@ -202,9 +202,6 @@ post_install_steps() {
 pre_install_steps() {
   echo "Answer the following before the automated installation starts."
 
-  echo "Enter lazygit tarball (.tar.gz) link (https://github.com/jesseduffield/lazygit/releases): "
-  read -r lazygitURL
-
   case "$(uname)" in
   Darwin)
     # install Homebrew on macOS
@@ -251,19 +248,6 @@ pre_install_steps() {
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
   fi
 
-  # lazygit
-  if [ -x "$(command -v lazygit)" ]; then
-    echo "Go toolchain already installed"
-  else
-    (
-      cd /tmp || return
-      echo "Downloading lazygit"
-      curl -LO --progress-bar "$lazygitURL"
-      echo "Installing lazygit"
-      $SUDO tar -C /usr/local/bin -xzf "${lazygitURL##*/}" # get name of tarball only
-    )
-  fi
-
   # tools on linux
   if [[ "$(uname)" == "Linux" ]]; then
     if [[ ("$(lsb_release -si)" == "elementary") || ("$(lsb_release -si)" == "Ubuntu") || ("$(lsb_release -si)" == "Debian") ]]; then
@@ -292,6 +276,7 @@ pre_install_steps() {
 
   # generic utilities
   lib/install curl shellcheck direnv
+}
 shfmt_steps() {
   echo "Install shellformat (shfmt)"
   case "$(uname)" in
@@ -355,16 +340,32 @@ golang_steps() {
   echo "Loading tldr cache"
   tldr --update
   ln -sf "$HOME/dotfiles/alacritty" "$HOME/.config/"
-  ln -sf "$HOME/dotfiles/lazygit" "$HOME/.config/"
   ln -sf "$HOME/dotfiles/starship/starship.toml" "$HOME/.config/"
+}
 
   #install fzf (fuzzy file finder)
   if [ -x "$(command -v fzf)" ]; then
     echo "fzf already installed"
+lazygit_steps() {
+  echo "Enter lazygit tarball (.tar.gz) link (https://github.com/jesseduffield/lazygit/releases): "
+  read -r lazygitURL
+
+  if [ -x "$(command -v lazygit)" ]; then
+    echo "lazygit already installed"
   else
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install
+    (
+      cd /tmp || return
+      echo "Downloading lazygit"
+      curl -LO --progress-bar "$lazygitURL"
+      echo "Installing lazygit"
+      [ ! -d "/usr/local/bin" ] && $SUDO mkdir -p "/usr/local/bin"
+      $SUDO tar -C /usr/local/bin -xzf "${lazygitURL##*/}" # get name of tarball only
+    )
   fi
+
+  ln -sf "$HOME/dotfiles/lazygit" "$HOME/.config/"
 }
 
 docker_steps() {
@@ -484,6 +485,7 @@ esac
 pre_install_steps
 shfmt_steps
 golang_steps
+lazygit_steps
 git_steps
 # vim_steps
 neovim_steps
