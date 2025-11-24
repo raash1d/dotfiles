@@ -103,8 +103,10 @@ zsh_steps() {
   lib/install zsh
 
   echo "Cleaning up previous zsh config files"
+  [ -f ~/.zprofile ] && rm ~/.zprofile
   [ -f ~/.zshrc ] && rm ~/.zshrc
 
+  create_file_link zsh .zprofile
   create_file_link zsh .zshrc
 
   echo "Setup zsh as default shell"
