@@ -138,7 +138,7 @@ tmux_steps() {
   esac
 
   git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
-  echo "Restart terminal and run prefix(\`)+I to install tmux plugins"
+  tmux source ~/.tmux.conf
 }
 ##################################################
 
