@@ -201,12 +201,6 @@ post_install_steps() {
 
 pre_install_steps() {
   echo "Answer the following before the automated installation starts."
-  if [[ "$(uname)" == "Linux" ]]; then
-    if [[ ("$(lsb_release -si)" == "elementary") || ("$(lsb_release -si)" == "Ubuntu") || ("$(lsb_release -si)" == "Debian") ]]; then
-      echo "Enter link to download shfmt (shellformat) util (https://github.com/mvdan/sh/releases):"
-      read -r shfmtURL
-    fi
-  fi
 
   echo "Enter lazygit tarball (.tar.gz) link (https://github.com/jesseduffield/lazygit/releases): "
   read -r lazygitURL
@@ -298,11 +292,17 @@ pre_install_steps() {
 
   # generic utilities
   lib/install curl shellcheck direnv
+shfmt_steps() {
   echo "Install shellformat (shfmt)"
-  if [[ "$(uname)" == "Darwin" ]]; then
+  case "$(uname)" in
+  Darwin)
     lib/install shfmt
-  elif [[ "$(uname)" == "Linux" ]]; then
-    if [[ ("$(lsb_release -si)" == "elementary") || ("$(lsb_release -si)" == "Ubuntu") || ("$(lsb_release -si)" == "Debian") ]]; then
+    ;;
+  Linux)
+    case $(lsb_release -si) in
+    Ubuntu | elementary | Debian)
+      echo "Enter link to download shfmt (shellformat) util (https://github.com/mvdan/sh/releases):"
+      read -r shfmtURL
       if [ -x "$(command -v shfmt)" ]; then
         echo "shfmt already installed"
       else
@@ -315,7 +315,18 @@ pre_install_steps() {
           $SUDO mv shfmt /usr/local/bin/
         )
       fi
-    fi
+      ;;
+    *)
+      echo "This linux distro is not supported yet."
+      ;;
+    esac
+    ;;
+  *)
+    echo "Your OS is not supported yet."
+    ;;
+  esac
+}
+
 golang_steps() {
   echo "Enter golang toolchain tarball (.tar.gz) link (https://golang.org/dl): "
   read -r golangURL
@@ -471,6 +482,7 @@ Linux)
 esac
 
 pre_install_steps
+shfmt_steps
 golang_steps
 git_steps
 # vim_steps
