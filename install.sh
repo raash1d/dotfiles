@@ -201,9 +201,6 @@ post_install_steps() {
 
 pre_install_steps() {
   echo "Answer the following before the automated installation starts."
-  echo "Enter golang toolchain tarball (.tar.gz) link (https://golang.org/dl): "
-  read -r golangURL
-
   if [[ "$(uname)" == "Linux" ]]; then
     if [[ ("$(lsb_release -si)" == "elementary") || ("$(lsb_release -si)" == "Ubuntu") || ("$(lsb_release -si)" == "Debian") ]]; then
       echo "Enter link to download shfmt (shellformat) util (https://github.com/mvdan/sh/releases):"
@@ -258,22 +255,6 @@ pre_install_steps() {
   else
     echo "Installing Rust toolchain"
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-  fi
-
-  # golang toolchain
-  if [ -x "$(command -v go)" ]; then
-    echo "Go toolchain already installed"
-  else
-    (
-      cd /tmp || return
-      echo "Downloading Go toolchain"
-      curl -LO --progress-bar "$golangURL"
-      echo "Installing Go toolchain"
-      $SUDO tar -C /usr/local -xzf "${golangURL##*/}" # get name of tarball only
-    )
-
-    # Temporarily export go path in PATH
-    export PATH="$PATH:/usr/local/go/bin"
   fi
 
   # lazygit
@@ -335,7 +316,26 @@ pre_install_steps() {
         )
       fi
     fi
+golang_steps() {
+  echo "Enter golang toolchain tarball (.tar.gz) link (https://golang.org/dl): "
+  read -r golangURL
+
+  # golang toolchain
+  if [ -x "$(command -v go)" ]; then
+    echo "Go toolchain already installed"
+  else
+    (
+      cd /tmp || return
+      echo "Downloading Go toolchain"
+      curl -LO --progress-bar "$golangURL"
+      echo "Installing Go toolchain"
+      $SUDO tar -C /usr/local -xzf "${golangURL##*/}" # get name of tarball only
+    )
+
+    # Temporarily export go path in PATH
+    export PATH="$PATH:/usr/local/go/bin"
   fi
+}
 
   # install rust-based utilities
   # dependency for alacritty
@@ -471,6 +471,7 @@ Linux)
 esac
 
 pre_install_steps
+golang_steps
 git_steps
 # vim_steps
 neovim_steps
