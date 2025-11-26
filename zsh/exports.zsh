@@ -7,7 +7,7 @@ export DOTFILES="$HOME/dotfiles"
 # export PATH="$HOME/bin:/usr/local/bin:$PATH"
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH:$RUST_PATH:$GO_PATH"
 
-if [[ $(uname -o) -eq "Darwin" ]]; then
+if [[ $(uname -o) == "Darwin" ]]; then
   HOMEBREW_PATH="/opt/homebrew/bin"
   export PATH="$PATH::$HOMEBREW_PATH"
   export XDG_CONFIG_HOME="$HOME/.config"
