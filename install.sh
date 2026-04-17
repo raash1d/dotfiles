@@ -115,6 +115,25 @@ zsh_steps() {
 ##################################################
 
 ############## tmux specific steps ###############
+
+############## tmuxifier specific steps ###############
+tmuxifier_steps() {
+  echo "Installing tmuxifier"
+
+  if [ ! -d "$HOME/.tmuxifier" ]; then
+    git clone https://github.com/jimeh/tmuxifier.git "$HOME/.tmuxifier"
+  else
+    echo "tmuxifier already installed"
+  fi
+
+  echo "Adding tmuxifier to PATH"
+  if ! grep -q 'export PATH="$HOME/.tmuxifier/bin:$PATH"' "$HOME/.zshrc"; then
+    echo 'export PATH="$HOME/.tmuxifier/bin:$PATH"' >>"$HOME/.zshrc"
+  fi
+
+  echo "Creating symlink for tmuxifier layouts"
+  ln -sf "$HOME/dotfiles/tmuxifier" "$HOME/.tmuxifier/layouts"
+}
 tmux_steps() {
   # TODO:Install tmux dependencies
   # libevent-dev libncurses-dev yacc
@@ -550,6 +569,7 @@ neovim_steps
 wezterm_steps
 zsh_steps
 tmux_steps
+tmuxifier_steps
 opencode_steps
 # docker_steps
 install_fonts
