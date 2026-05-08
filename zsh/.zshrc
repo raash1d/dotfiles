@@ -1,6 +1,8 @@
 # Run tmux if exists (https://github.com/Parth/dotfiles/blob/master/zsh/zshrc_manager.sh)
 if command -v tmux >/dev/null 2>&1; then
-  [ -z $TMUX ] && exec tmux
+  if [ "$TERM_PROGRAM" != "vscode" ]; then
+    [[ -z "$TMUX" ]] && exec tmux
+  fi
 else
   echo "tmux not installed"
 fi
