@@ -16,6 +16,10 @@ return {
             hidden = true,
           },
         },
+        explorer = {
+          hidden = true,
+          ignored = true,
+        },
       },
     },
     styles = {
