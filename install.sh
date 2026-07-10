@@ -70,7 +70,11 @@ git_steps() {
   lib/install gh
   gh extension install dlvhdr/gh-dash
   gh extension install dlvhdr/gh-enhance
-  cargo install gh-review
+  cargo install gh-review git-delta
+  git clone https://github.com/dlvhdr/diffnav.git
+  cd diffnav
+  go install .
+  git config --global pager.diff diffnav
   ln -sf "$HOME/dotfiles/.config/gh-dash" "$HOME/.config/"
 }
 ##################################################
