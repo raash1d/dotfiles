@@ -90,6 +90,7 @@ keybindings:
           gh-review {{.RepoName}} {{.PrNumber}}
         '
     - key: T
+      name: checks (gh-enhance)
       command: >-
         tmux new-window '
           gh enhance -R {{.RepoName}} {{.PrNumber}}
