@@ -66,6 +66,12 @@ git_steps() {
 
   # echo "Cloning Git submodules"
   # git submodule update --init --recursive
+
+  lib/install gh
+  gh extension install dlvhdr/gh-dash
+  gh extension install dlvhdr/gh-enhance
+  cargo install gh-review
+  ln -sf "$HOME/dotfiles/.config/gh-dash" "$HOME/.config/"
 }
 ##################################################
 
