@@ -7,3 +7,5 @@ nvim/lazy-lock.json
 alacritty/local-config.toml
 !zsh/plugins/ohmyzsh
 zsh/plugins/*
+.config/herdr/*
+!.config/herdr/config.toml

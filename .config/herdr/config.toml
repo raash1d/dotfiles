@@ -1,0 +1,39 @@
+onboarding = false
+
+[ui]
+show_agent_labels_on_pane_borders = true
+
+[ui.toast]
+delivery = "herdr"
+
+[ui.sound]
+enabled = false
+
+[theme]
+name = "terminal"
+auto_switch = false
+
+[keys]
+prefix = "backtick"
+detach = ["prefix+d", "prefix+q"]
+focus_pane_left = ["prefix+h", "ctrl+h"]
+focus_pane_down = ["prefix+j", "ctrl+j"]
+focus_pane_up = ["prefix+k", "ctrl+k"]
+focus_pane_right = ["prefix+l", "ctrl+l"]
+last_pane = "ctrl+backslash"
+split_vertical = ["prefix+|", "prefix+\\", "prefix+v"]
+split_horizontal = ["prefix+minus", "prefix+_"]
+navigate_workspace_up = ["k", "up"]
+navigate_workspace_down = ["j", "down"]
+previous_workspace = "ctrl+alt+k"
+next_workspace = "ctrl+alt+j"
+previous_agent = "ctrl+alt+["
+next_agent = "ctrl+alt+]"
+
+[[keys.command]]
+key = "prefix+alt+g"
+type = "popup"
+command = "lazygit"
+description = "lazygit"
+width = "90%"
+height = "90%"
