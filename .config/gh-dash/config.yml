@@ -88,10 +88,7 @@ keybindings:
       command: tuicr pr {{.PrNumber}}
     - key: T
       name: checks (gh-enhance)
-      command: >-
-        tmux new-window '
-          gh enhance -R {{.RepoName}} {{.PrNumber}}
-        '
+      command: gh enhance -R {{.RepoName}} {{.PrNumber}}
 theme:
     ui:
         sectionsShowCount: true
