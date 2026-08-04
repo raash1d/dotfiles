@@ -9,3 +9,4 @@ alacritty/local-config.toml
 zsh/plugins/*
 .config/herdr/*
 !.config/herdr/config.toml
+/.agents/.skill-lock.json
