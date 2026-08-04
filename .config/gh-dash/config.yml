@@ -84,11 +84,8 @@ defaults:
 keybindings:
   prs:
     - key: R
-      name: review (gh-review)
-      command: >-
-        tmux new-window '
-          gh-review {{.RepoName}} {{.PrNumber}}
-        '
+      name: code review
+      command: tuicr pr {{.PrNumber}}
     - key: T
       name: checks (gh-enhance)
       command: >-
