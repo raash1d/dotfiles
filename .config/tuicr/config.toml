@@ -1,4 +1,3 @@
-diff_view = "side-by-side"
 comment_vim = true
 ignore_whitespace = true
 comment_types = [
