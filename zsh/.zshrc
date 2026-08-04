@@ -3,7 +3,7 @@ if [[ -o interactive ]] || [[ $- == *i* ]]; then
   # command -v tmux >/dev/null 2>&1 && [ "$TERM_PROGRAM" != "vscode" ] && [ -z "$TMUX" ] && exec tmux || echo "tmux not installed"
 
   # Launch or attach to Herdr at startup
-  command -v herdr >/dev/null 2>&1 && [ -z "$HERDR_ENV" ] && [ -z "$TMUX" ] && exec herdr || echo "herdr not installed"
+  [[ -z $(command -v herdr) ]] && echo "herdr not installed" || { [[ "$TERM_PROGRAM" != "vscode" && -z "$TMUX" && "$HERDR_ENV" != "1" ]] && exec herdr }
 fi
 
 setopt prompt_subst
