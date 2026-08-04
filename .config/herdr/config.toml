@@ -16,10 +16,6 @@ auto_switch = false
 [keys]
 prefix = "backtick"
 detach = ["prefix+d", "prefix+q"]
-focus_pane_left = ["prefix+h", "ctrl+h"]
-focus_pane_down = ["prefix+j", "ctrl+j"]
-focus_pane_up = ["prefix+k", "ctrl+k"]
-focus_pane_right = ["prefix+l", "ctrl+l"]
 last_pane = "ctrl+backslash"
 split_vertical = ["prefix+|", "prefix+\\", "prefix+v"]
 split_horizontal = ["prefix+minus", "prefix+_"]
