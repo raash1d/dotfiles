@@ -1,10 +1,9 @@
-# Run tmux if exists (https://github.com/Parth/dotfiles/blob/master/zsh/zshrc_manager.sh)
-if command -v tmux >/dev/null 2>&1; then
-  if [ "$TERM_PROGRAM" != "vscode" ]; then
-    [[ -z "$TMUX" ]] && exec tmux
-  fi
-else
-  echo "tmux not installed"
+if [[ -o interactive ]] || [[ $- == *i* ]]; then
+  # Launch or attach to tmux at startup
+  # command -v tmux >/dev/null 2>&1 && [ "$TERM_PROGRAM" != "vscode" ] && [ -z "$TMUX" ] && exec tmux || echo "tmux not installed"
+
+  # Launch or attach to Herdr at startup
+  command -v herdr >/dev/null 2>&1 && [ -z "$HERDR_ENV" ] && [ -z "$TMUX" ] && exec herdr || echo "herdr not installed"
 fi
 
 setopt prompt_subst
