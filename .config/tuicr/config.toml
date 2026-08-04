@@ -1,4 +1,3 @@
-comment_vim = true
 ignore_whitespace = true
 comment_types = [
   { id = "question", definition = "ask for clarification", color = "yellow" },
