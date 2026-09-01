@@ -63,7 +63,7 @@ _remove_zsh_plugin() {
 zsh_plugin install zsh-users/zsh-autosuggestions
 zsh_plugin install zsh-users/zsh-syntax-highlighting
 zsh_plugin install MichaelAquilina/zsh-you-should-use
-zsh_plugin install lukechilds/zsh-nvm
+# zsh_plugin install lukechilds/zsh-nvm
 
 zsh_plugin _source ohmyzsh/git
 if ! command -v node >/dev/null; then
