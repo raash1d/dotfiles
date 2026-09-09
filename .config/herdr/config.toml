@@ -3,6 +3,14 @@ onboarding = false
 [ui]
 show_agent_labels_on_pane_borders = true
 pane_gaps = false
+status_indicators = "symbols"
+
+[[ui.tab_bar_right]]
+type = "hostname"
+
+[[ui.tab_bar_right]]
+type = "datetime"
+format = "%m/%d/%Y %I:%M %p"
 
 [ui.toast]
 delivery = "herdr"
