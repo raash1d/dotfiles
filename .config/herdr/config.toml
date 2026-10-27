@@ -13,7 +13,7 @@ type = "datetime"
 format = "%m/%d/%Y %I:%M %p"
 
 [ui.toast]
-delivery = "herdr"
+delivery = "system"
 
 [ui.sound]
 enabled = false
